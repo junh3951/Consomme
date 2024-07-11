@@ -126,13 +126,12 @@ function App() {
 							onClick={() => router.push('/recommned_page')}
 						/>
 					</div>
-					<div className="button-container">
-						<RectButton
-							type="disabled"
-							text="생성하기"
-							onClick={() => router.push('/recommned_page')}
-						/>
-					</div>
+					<div className="h-[25px]" />
+					<RectButton
+						type="highlight"
+						text="생성하기"
+						onClick={() => router.push('/recommned_page')}
+					/>
 				</div>
 			</div>
 		</main>
