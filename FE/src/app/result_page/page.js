@@ -19,7 +19,7 @@ function App() {
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			setShowContent(true)
-		}, 3500)
+		}, 8500)
 
 		return () => clearTimeout(timer)
 	}, [])

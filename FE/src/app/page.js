@@ -29,10 +29,15 @@ export default function Home() {
 					<div className="text-container">Welcome to Consommé</div>
 					<div className="h-[10px]" />
 					<InputWithLabel label="Email" placeholder="Email" />
-					<InputWithLabel label="Password" placeholder="Password" />
+					<InputWithLabel
+						label="Password"
+						placeholder="Password"
+						type="password"
+					/>
 					<InputWithLabel
 						label="Password Again*"
 						placeholder="Password"
+						type="password"
 					/>
 					<div className="h-[30px]" />
 					<InputWithLabel label="Name" placeholder="Name" />
