@@ -1,0 +1,50 @@
+@import url('../../assets/style/Global.css');
+
+button {
+	border: 2px solid #e6e6e6;
+	border: 2px solid color(display-p3 0.902 0.902 0.902);
+	border-radius: 35px;
+	cursor: pointer;
+	outline: none;
+	display: inline-flex;
+	padding: 19px 35px;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	transition: transform 0.1s, background-color 0.1s, border-color 0.1s;
+	box-sizing: border-box;
+	font-size: 18px;
+	color: #000; /* Adjust the text color as needed */
+	background: #f8f8f8;
+	background: color(display-p3 0.9725 0.9725 0.9725);
+}
+
+button:active {
+	transform: scale(0.95);
+	user-select: none;
+}
+
+button:disabled {
+	background: #bababa;
+	background: color(display-p3 0.7291 0.7291 0.7291);
+	cursor: not-allowed; /* Change cursor to not-allowed */
+}
+
+.button-highlight {
+	background: #2f2f2f;
+	background: color(display-p3 0.1824 0.1824 0.1824);
+	color: #fff; /* Adjust the text color as needed */
+}
+
+button.selected {
+	border: 2px solid #2f2f2f;
+	border: 2px solid color(display-p3 0.1824 0.1824 0.1824);
+	background: #989898;
+	background: color(display-p3 0.5961 0.5961 0.5961);
+}
+
+.button-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}

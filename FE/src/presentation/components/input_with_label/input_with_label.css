@@ -1,0 +1,36 @@
+.input-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin: 4px; /* 필요한 경우 조정 */
+}
+
+.label {
+	color: #191919;
+	color: color(display-p3 0.098 0.098 0.098);
+	font-family: 'Pretendard', sans-serif;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	margin-bottom: 4px;
+}
+
+.input-field {
+	width: 100%; /* 필요에 따라 조정 가능 */
+	height: 50px;
+	flex-shrink: 0;
+	border-radius: 10px;
+	border: 2px solid #c4c4c4;
+	border: 2px solid color(display-p3 0.7686 0.7686 0.7686);
+	padding: 0 12px;
+	font-family: 'Pretendard', sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	color: #191919;
+}
+
+.input-field::placeholder {
+	color: #c4c4c4;
+	color: color(display-p3 0.7686 0.7686 0.7686);
+}
