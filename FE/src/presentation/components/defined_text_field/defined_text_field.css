@@ -1,0 +1,37 @@
+@import url('../../assets/style/Global.css');
+
+.display-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin: 4px; /* Adjust as needed */
+}
+
+.label {
+	color: #191919;
+	color: color(display-p3 0.098 0.098 0.098);
+	font-family: 'Pretendard', sans-serif;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+	margin-bottom: 4px;
+}
+
+.display-field {
+	width: 100%; /* Adjust as needed */
+	height: auto; /* Adjust height to be auto for dynamic content */
+	min-height: 50px; /* Ensure it doesn't shrink below the desired height */
+	flex-shrink: 0;
+	border-radius: 10px;
+	padding: 10px 12px;
+	font-family: 'Pretendard', sans-serif;
+	font-weight: 300;
+	font-size: 20px;
+	color: #000000dc;
+	display: flex;
+	align-items: center;
+	background-color: rgb(238, 238, 238);
+	white-space: normal; /* Allow text to wrap */
+	word-wrap: break-word; /* Break words if necessary */
+}
