@@ -1,8 +1,7 @@
 'use client'
 
-import './page.css'
+import '../page.css'
 import React, { useState } from 'react'
-import RectButton from '../presentation/components/rect_button/rect_button'
 
 export default function Home() {
 	return (
