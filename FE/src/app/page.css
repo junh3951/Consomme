@@ -1,95 +1,56 @@
-@import url("../presentation/assets/style/Global.css");
+@import url('../presentation/assets/style/Global.css');
 
-.loader {
-  width: 48px;
-  height: 48px;
-  margin: auto;
-  position: relative;
+body,
+html,
+main {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background-color: white;
 }
 
-.loader:before {
-  content: "";
-  width: 48px;
-  height: 5px;
-  background: #f0808050;
-  position: absolute;
-  top: 60px;
-  left: 0;
-  border-radius: 50%;
-  animation: shadow324 0.5s linear infinite;
+.flex {
+	display: flex;
 }
 
-.loader:after {
-  content: "";
-  width: 100%;
-  height: 100%;
-  background: var(--brand-400);
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-radius: 4px;
-  animation: jump7456 0.5s linear infinite;
+.min-h-screen {
+	min-height: 100vh;
 }
 
-@keyframes jump7456 {
-  15% {
-    border-bottom-right-radius: 3px;
-  }
-
-  25% {
-    transform: translateY(9px) rotate(22.5deg);
-  }
-
-  50% {
-    transform: translateY(18px) scale(1, 0.9) rotate(45deg);
-    border-bottom-right-radius: 40px;
-  }
-
-  75% {
-    transform: translateY(9px) rotate(67.5deg);
-  }
-
-  100% {
-    transform: translateY(0) rotate(90deg);
-  }
+.flex-col {
+	flex-direction: column;
 }
 
-@keyframes shadow324 {
-  0%,
-  100% {
-    transform: scale(1, 1);
-  }
-
-  50% {
-    transform: scale(1.2, 1);
-  }
+.items-center {
+	align-items: center;
 }
 
-.question-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 16px 40px;
+.justify-center {
+	justify-content: center;
 }
 
-.scroll-questions {
-  max-height: calc(100vh - 380px);
-  overflow: hidden;
-  transition: all 0.3s;
-  position: relative;
+.bg-white {
+	background-color: white;
 }
 
-.scroll-blur {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 80px;
-  background: linear-gradient(to top, transparent, var(--gray-50));
-  z-index: 100;
+.left-sidebar {
+	position: absolute;
+	left: 0;
+	width: 40%;
+	min-width: 1000px;
+	height: 100%;
+	background: #ededed;
+	background: color(display-p3 0.9308 0.9308 0.9308);
 }
 
-@media screen and (min-width: 393px) {
-  .scroll-questions {
-    max-height: calc(100vh - 188px);
-  }
+.sidebar-pattern {
+	left: 0;
+	width: 747.571px;
+	height: 492.403px;
+	transform: rotate(-2.552deg);
+	flex-shrink: 0;
+	stroke: #fff;
+	stroke-width: 50px;
+	stroke: color(display-p3 1 1 1);
 }
