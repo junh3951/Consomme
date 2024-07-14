@@ -34,31 +34,20 @@ export default function Home() {
 						placeholder="Password"
 						type="password"
 					/>
-					<div className="forgot-password-text">비밀번호를 까먹었나요?</div>
+					<InputWithLabel
+						label="Password Again*"
+						placeholder="Password"
+						type="password"
+					/>
 					<div className="h-[30px]" />
+					<InputWithLabel label="Name" placeholder="Name" />
+					{/* <div className="h-[30px]" /> */}
+					<div className="h-[10px]" />
 					<div className="button-container">
 						<RectButton
 							type="highlight"
-							text="로그인"
+							text="회원가입하기"
 							onClick={() => router.push('/recommned_page')}
-						/>
-					</div>
-					<div className="h-[10px]" />
-					<div className="button-container">
-						<RectButton
-							type="default"
-							text="회원가입"
-							onClick={() => router.push('/signup_page')}
-						/>
-					</div>
-					<div className="h-[10px]" />
-					<div className="or-text">or</div>
-					<div className="h-[10px]" />
-					<div className="button-container">
-						<RectButton
-							type="default"
-							text="구글 계정으로 가입"
-							// onClick={() => router.push('/signup_page')}
 						/>
 					</div>
 				</div>

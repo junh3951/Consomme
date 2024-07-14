@@ -125,19 +125,3 @@ main {
 	width: 50%;
 	min-width: 300px;
 }
-
-.forgot-password-text {
-	color: #656565;
-	color: color(display-p3 0.3961 0.3961 0.3961);
-	text-align: right;
-	width: 50%;
-	font-size: 15px;
-	font-weight: 500;
-}
-
-.or-text {
-	color: #656565;
-	color: color(display-p3 0.3961 0.3961 0.3961);
-	font-size: 16px;
-	font-weight: 500;
-}
