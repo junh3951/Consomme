@@ -30,11 +30,7 @@
 	color: black;
 }
 
-.logo-box.disabled {
-	pointer-events: none;
-}
-
-.logo-box.disabled .logo,
-.logo-box.disabled .logo-text-container {
+.logo-box.notactive .logo,
+.logo-box.notactive .logo-text-container {
 	opacity: 0.5; /* Adjust the opacity for a disabled look */
 }

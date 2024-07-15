@@ -9,15 +9,10 @@ import InputWithLabel from '@/presentation/components/input_with_label/input_wit
 
 export default function Home() {
 	const router = useRouter()
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
 
-	const handleLogin = () => {
-		if (!email || !password) {
-			alert('이메일과 비밀번호를 입력하세요.')
-			return
-		}
-		router.push('/recommned_page')
+	const handleSignUp = () => {
+		alert('회원가입이 완료되었습니다.')
+		router.push('/')
 	}
 
 	return (
@@ -39,44 +34,25 @@ export default function Home() {
 					</div>
 					<div className="text-container">Welcome to Consommé</div>
 					<div className="h-[10px]" />
-					<InputWithLabel
-						label="Email"
-						placeholder="Email"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-					/>
+					<InputWithLabel label="Email" placeholder="Email" />
 					<InputWithLabel
 						label="Password"
 						placeholder="Password"
 						type="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
 					/>
-					<div className="forgot-password-text">비밀번호를 까먹었나요?</div>
+					<InputWithLabel
+						label="Password Again*"
+						placeholder="Password"
+						type="password"
+					/>
 					<div className="h-[30px]" />
+					<InputWithLabel label="Name" placeholder="Name" />
+					<div className="h-[10px]" />
 					<div className="button-container">
 						<RectButton
 							type="highlight"
-							text="로그인"
-							onClick={handleLogin}
-						/>
-					</div>
-					<div className="h-[10px]" />
-					<div className="button-container">
-						<RectButton
-							type="default"
 							text="회원가입"
-							onClick={() => router.push('/signup_page')}
-						/>
-					</div>
-					<div className="h-[10px]" />
-					<div className="or-text">or</div>
-					<div className="h-[10px]" />
-					<div className="button-container">
-						<RectButton
-							type="default"
-							text="구글 계정으로 가입"
-							// onClick={() => router.push('/signup_page')}
+							onClick={handleSignUp}
 						/>
 					</div>
 				</div>

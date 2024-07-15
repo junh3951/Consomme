@@ -37,8 +37,8 @@ function App() {
 					<div className="sub-text-container">Create</div>
 				</div>
 				<div className="h-[10px]" />
-				<SidebarButton logotype="video" text="콘텐츠 소재" />
-				<SidebarButton logotype="box" text="소재 보관함" disabled />
+				<SidebarButton logotype="video" text="콘텐츠 소재" notactive={false} onClick={() => router.push('/recommned_page')}/>
+				<SidebarButton logotype="box" text="소재 보관함" notactive={true} onClick={() => router.push('/archive_page')} />
 			</div>
 			<div className="right-content-box">
 				<div className="right-content-container">
