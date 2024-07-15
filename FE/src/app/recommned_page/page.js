@@ -9,6 +9,40 @@ import RoundButton from '@/presentation/components/round_button/round_button'
 import InputWithLabel from '@/presentation/components/input_with_label/input_with_label'
 import SidebarButton from '@/presentation/components/sidebar_button/sidebar_button'
 
+const getCircleSize = (index) => {
+	const baseSize = 50; // 기본 크기
+	const sizeIncrement = 10; // 증가 크기
+	return baseSize + index * sizeIncrement;
+};	
+
+const keywords = [
+	{ text: '한달살기', size: getCircleSize(0) },
+	{ text: '탕후루', size: getCircleSize(1) },
+	{ text: '퇴사 후 여행', size: getCircleSize(2) },
+	{ text: '치앙마이', size: getCircleSize(3) },
+	{ text: '랜덤뽑기', size: getCircleSize(4) },
+	{ text: '살아남기', size: getCircleSize(5) },
+	{ text: '아프리카', size: getCircleSize(6) },
+	{ text: '에어비앤비', size: getCircleSize(7) },
+	// 추가 키워드들
+];
+
+function KeywordCircles({ keywords }) {
+	return (
+		<div className="keyword-circles">
+			{keywords.map((keyword, index) => (
+				<div
+					key={index}
+					className="keyword-circle"
+					style={{ width: keyword.size, height: keyword.size }}
+				>
+					{keyword.text}
+				</div>
+			))}
+		</div>
+	);
+}
+
 function App() {
 	const [inputValue, setInputValue] = useState('')
 	const [selectedCategory, setSelectedCategory] = useState(null)
@@ -21,25 +55,9 @@ function App() {
 	const handleCategoryClick = (category) => {
 		setSelectedCategory(category)
 	}
+	
 
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-center bg-white">
-			<div className="left-sidebar">
-				<div className="h-[90px]" />
-				<div className="head-logo-box">
-					<div className="head-logo-container">
-						<Icon type="logo-icon" className="head-logo" />
-					</div>
-					<div className="head-logo-text-container">Consommé</div>
-				</div>
-				<div className="h-[10px]" />
-				<div className="text-box">
-					<div className="sub-text-container">Create</div>
-				</div>
-				<div className="h-[10px]" />
-				<SidebarButton logotype="video" text="콘텐츠 소재" notactive={false} onClick={() => router.push('/recommned_page')}/>
-				<SidebarButton logotype="box" text="소재 보관함" notactive={true} onClick={() => router.push('/archive_page')} />
-			</div>
 			<div className="right-content-box">
 				<div className="right-content-container">
 					<div className="h-[83px]" />
@@ -52,7 +70,7 @@ function App() {
 					</div>
 					<InputWithLabel
 						label=""
-						placeholder="예시: 탕후루"
+						placeholder="한 단어로 입력해주세요."
 						onChange={handleInputChange}
 					/>
 					<div className="h-[23px]" />
@@ -72,21 +90,12 @@ function App() {
 						/>
 						<RoundButton
 							type={
-								selectedCategory === '뷰티/패션'
+								selectedCategory === '뷰티 / 패션'
 									? 'highlight'
 									: 'default'
 							}
-							text="뷰티/패션"
-							onClick={() => handleCategoryClick('뷰티/패션')}
-						/>
-						<RoundButton
-							type={
-								selectedCategory === '교육'
-									? 'highlight'
-									: 'default'
-							}
-							text="교육"
-							onClick={() => handleCategoryClick('교육')}
+							text="뷰티 / 패션"
+							onClick={() => handleCategoryClick('뷰티 / 패션')}
 						/>
 						<RoundButton
 							type={
@@ -96,17 +105,6 @@ function App() {
 							}
 							text="엔터테인먼트"
 							onClick={() => handleCategoryClick('엔터테인먼트')}
-						/>
-						<RoundButton
-							type={
-								selectedCategory === '영화/애니메이션'
-									? 'highlight'
-									: 'default'
-							}
-							text="영화/애니메이션"
-							onClick={() =>
-								handleCategoryClick('영화/애니메이션')
-							}
 						/>
 						<RoundButton
 							type={
@@ -128,88 +126,31 @@ function App() {
 						/>
 						<RoundButton
 							type={
-								selectedCategory === '여행/이벤트'
+								selectedCategory === '여행 / 이벤트'
 									? 'highlight'
 									: 'default'
 							}
-							text="여행/이벤트"
-							onClick={() => handleCategoryClick('여행/이벤트')}
+							text="여행 / 이벤트"
+							onClick={() => handleCategoryClick('여행 / 이벤트')}
 						/>
+
 						<RoundButton
 							type={
-								selectedCategory === '가족'
+								selectedCategory === '애완동물 / 동물'
 									? 'highlight'
 									: 'default'
 							}
-							text="가족"
-							onClick={() => handleCategoryClick('가족')}
-						/>
-						<RoundButton
-							type={
-								selectedCategory === '노하우/스타일'
-									? 'highlight'
-									: 'default'
-							}
-							text="노하우/스타일"
-							onClick={() => handleCategoryClick('노하우/스타일')}
-						/>
-						<RoundButton
-							type={
-								selectedCategory === '음악'
-									? 'highlight'
-									: 'default'
-							}
-							text="음악"
-							onClick={() => handleCategoryClick('음악')}
-						/>
-						<RoundButton
-							type={
-								selectedCategory === '뉴스/정치'
-									? 'highlight'
-									: 'default'
-							}
-							text="뉴스/정치"
-							onClick={() => handleCategoryClick('뉴스/정치')}
-						/>
-						<RoundButton
-							type={
-								selectedCategory === '비영리/사회운동'
-									? 'highlight'
-									: 'default'
-							}
-							text="비영리/사회운동"
-							onClick={() =>
-								handleCategoryClick('비영리/사회운동')
-							}
-						/>
-						<RoundButton
-							type={
-								selectedCategory === '인물/블로그'
-									? 'highlight'
-									: 'default'
-							}
-							text="인물/블로그"
-							onClick={() => handleCategoryClick('인물/블로그')}
-						/>
-						<RoundButton
-							type={
-								selectedCategory === '과학기술'
-									? 'highlight'
-									: 'default'
-							}
-							text="과학기술"
-							onClick={() => handleCategoryClick('과학기술')}
-						/>
-						<RoundButton
-							type={
-								selectedCategory === '기타'
-									? 'highlight'
-									: 'default'
-							}
-							text="기타"
-							onClick={() => handleCategoryClick('기타')}
+							text="애완동물 / 동물"
+							onClick={() => handleCategoryClick('애완동물 / 동물')}
 						/>
 					</div>
+					<div className="h-[23px]" />
+					<div className="subheader-text-container">
+						트렌드 키워드 선택
+					</div>
+					<p>선택하신 카테고리 내 최근 N개월 동안 관련 결과 분석 콘텐트에서 높은 빈도수를 보이는 키워드를 시각화하여 보여준 그래프입니다.</p>
+					<div className="h-[5px]" />
+					<KeywordCircles keywords={keywords} />
 					<div className="h-[25px]" />
 					<RectButton
 						type="highlight"
@@ -223,7 +164,6 @@ function App() {
 					/>
 				</div>
 			</div>
-		</main>
 	)
 }
 export default App
