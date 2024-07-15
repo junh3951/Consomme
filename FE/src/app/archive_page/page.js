@@ -31,7 +31,12 @@ function App() {
 		// 다른 콘텐츠들을 여기에 추가할 수 있습니다.
 	  ];
 
-	  const numOfContents = contents.length;
+	const numOfContents = contents.length;
+
+	const handleCardClick = (title) => {
+		const params = new URLSearchParams({ title }).toString();
+		router.push(`/detail_page?${params}`);
+	};
 
 	return (
 		<div className="right-content-container">
@@ -46,7 +51,7 @@ function App() {
 			<div className="h-[23px]" />
 			<div className="content-grid">
 				{contents.map((content, index) => (
-					<div className="content-box" key={index}>              
+					<div className="content-box" key={index} onClick={() => handleCardClick(content.title)}>              
 						<h3>소재</h3>
 						<h4>{content.title}</h4>
 						<h3>소재 추천 이유</h3>

@@ -9,6 +9,12 @@ import InputWithLabel from '@/presentation/components/input_with_label/input_wit
 
 export default function Home() {
 	const router = useRouter()
+
+	const handleSignUp = () => {
+		alert('회원가입이 완료되었습니다.')
+		router.push('/')
+	}
+
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-center bg-white">
 			<div className="left-sidebar">
@@ -41,13 +47,12 @@ export default function Home() {
 					/>
 					<div className="h-[30px]" />
 					<InputWithLabel label="Name" placeholder="Name" />
-					{/* <div className="h-[30px]" /> */}
 					<div className="h-[10px]" />
 					<div className="button-container">
 						<RectButton
 							type="highlight"
-							text="회원가입하기"
-							onClick={() => router.push('/recommned_page')}
+							text="회원가입"
+							onClick={handleSignUp}
 						/>
 					</div>
 				</div>

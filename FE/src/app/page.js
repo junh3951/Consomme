@@ -9,6 +9,17 @@ import InputWithLabel from '@/presentation/components/input_with_label/input_wit
 
 export default function Home() {
 	const router = useRouter()
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+
+	const handleLogin = () => {
+		if (!email || !password) {
+			alert('이메일과 비밀번호를 입력하세요.')
+			return
+		}
+		router.push('/recommned_page')
+	}
+
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-center bg-white">
 			<div className="left-sidebar">
@@ -28,11 +39,18 @@ export default function Home() {
 					</div>
 					<div className="text-container">Welcome to Consommé</div>
 					<div className="h-[10px]" />
-					<InputWithLabel label="Email" placeholder="Email" />
+					<InputWithLabel
+						label="Email"
+						placeholder="Email"
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+					/>
 					<InputWithLabel
 						label="Password"
 						placeholder="Password"
 						type="password"
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
 					/>
 					<div className="forgot-password-text">비밀번호를 까먹었나요?</div>
 					<div className="h-[30px]" />
@@ -40,7 +58,7 @@ export default function Home() {
 						<RectButton
 							type="highlight"
 							text="로그인"
-							onClick={() => router.push('/recommned_page')}
+							onClick={handleLogin}
 						/>
 					</div>
 					<div className="h-[10px]" />
