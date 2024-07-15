@@ -187,6 +187,13 @@ main {
 	left: 45%;
 }
 
+.keyword-circles {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	justify-content: center;
+}
+
 .keyword-circle {
 	display: flex;
 	align-items: center;

@@ -9,6 +9,41 @@ import RoundButton from '@/presentation/components/round_button/round_button'
 import InputWithLabel from '@/presentation/components/input_with_label/input_with_label'
 import SidebarButton from '@/presentation/components/sidebar_button/sidebar_button'
 
+const getCircleSize = (index) => {
+	const baseSize = 50; // 기본 크기
+	const sizeIncrement = 10; // 증가 크기
+	return baseSize + index * sizeIncrement;
+};	
+
+const keywords = [
+	{ text: '한달살기', size: getCircleSize(0) },
+	{ text: '탕후루', size: getCircleSize(1) },
+	{ text: '퇴사 후 여행', size: getCircleSize(2) },
+	{ text: '치앙마이', size: getCircleSize(3) },
+	{ text: '랜덤뽑기', size: getCircleSize(4) },
+	{ text: '살아남기', size: getCircleSize(5) },
+	{ text: '아프리카', size: getCircleSize(6) },
+	{ text: '에어비앤비', size: getCircleSize(7) },
+	// 추가 키워드들
+];
+
+function KeywordCircles({ keywords }) {
+	return (
+		<div className="keyword-circles">
+			{keywords.map((keyword, index) => (
+				<button
+					key={index}
+					className="keyword-circle"
+					style={{ width: keyword.size, height: keyword.size }}
+				>
+					{keyword.text}
+				</button>
+			))}
+		</div>
+	);
+}
+
+
 function App() {
 	const [inputValue, setInputValue] = useState('')
 	const [selectedCategory, setSelectedCategory] = useState(null)
@@ -140,10 +175,8 @@ function App() {
 						선택하신 카테고리 내 최근 N개월 동안 관련 결과 분석 콘텐트에서 높은 빈도수를 보이는 키워드를 시각화하여 보여준 그래프입니다.
 					</div>
 					<div className="h-[25px]" />
-					<div className="trend-button-container">
-						<button className='trendButton1'/>
-						
-					</div>
+					<KeywordCircles keywords={keywords} />
+					<div className="h-[25px]" />
 					<RectButton
 						className='generate_button'
 						type="highlight"
