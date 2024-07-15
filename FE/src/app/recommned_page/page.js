@@ -10,8 +10,27 @@ import InputWithLabel from '@/presentation/components/input_with_label/input_wit
 import SidebarButton from '@/presentation/components/sidebar_button/sidebar_button'
 
 function App() {
+	const trendsByCategory = {
+		"스포츠": ["축구", "야구", "농구", "테니스", "배드민턴", "골프", "수영", "복싱"],
+		"뷰티/패션": ["스킨케어", "메이크업", "헤어스타일", "패션 트렌드", "액세서리", "네일 아트", "향수", "바디케어"],
+		"교육": ["온라인 학습", "언어 학습", "코딩", "예술 교육", "과학 실험", "수학", "역사", "문학"],
+		"엔터테인먼트": ["1", "2", "3", "4", "5", "6", "7", "8"],
+		"영화/애니메이션": ["1", "2", "3", "4", "5", "6", "7", "8"],
+		"음식": ["1", "2", "3", "4", "5", "6", "7", "8"],
+		"게임": ["1", "2", "3", "4", "5", "6", "7", "8"],
+		"여행/이벤트": ["1", "2", "3", "4", "5", "6", "7", "8"],
+		"가족": ["1", "2", "3", "4", "5", "6", "7", "8"],
+		"노하우/스타일": ["1", "2", "3", "4", "5", "6", "7", "8"],
+		"음악": ["1", "2", "3", "4", "5", "6", "7", "8"],
+		"뉴스/정치": ["1", "2", "3", "4", "5", "6", "7", "8"],
+		"비영리/사회운동": ["1", "2", "3", "4", "5", "6", "7", "8"],
+		"인물/블로그": ["1", "2", "3", "4", "5", "6", "7", "8"],
+		"과학기술": ["1", "2", "3", "4", "5", "6", "7", "8"],
+		"기타": ["1", "2", "3", "4", "5", "6", "7", "8"]
+	};
 	const [inputValue, setInputValue] = useState('')
 	const [selectedCategory, setSelectedCategory] = useState(null)
+	const [selectedTrend, setSelectedTrend] = useState(null)
 	const router = useRouter()
 
 	const handleInputChange = (e) => {
@@ -20,6 +39,10 @@ function App() {
 
 	const handleCategoryClick = (category) => {
 		setSelectedCategory(category)
+	}
+
+	const handleTrendClick = (trend) => {
+		setSelectedTrend(trend)
 	}
 
 	return (
@@ -210,7 +233,21 @@ function App() {
 							onClick={() => handleCategoryClick('기타')}
 						/>
 					</div>
-					<div className="h-[25px]" />
+					<div className="h-[50px]" />
+					{selectedCategory && (
+						<div className="circle-container">
+							{trendsByCategory[selectedCategory].map((trend, index) => (
+								<button
+									key={index}
+									className={`circle circle-${index + 1} ${selectedTrend === trend ? 'highlight' : ''}`}
+									onClick={() => handleTrendClick(trend)}
+								>
+									{trend}
+								</button>
+							))}
+						</div>
+					)}
+					<div className="h-[50px]" />
 					<RectButton
 						type="highlight"
 						text="생성하기"

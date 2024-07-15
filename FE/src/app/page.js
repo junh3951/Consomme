@@ -13,10 +13,10 @@ export default function Home() {
 	const [password, setPassword] = useState('')
 
 	const handleLogin = () => {
-		if (!email || !password) {
-			alert('이메일과 비밀번호를 입력하세요.')
-			return
-		}
+		// if (!email || !password) {
+		// 	alert('이메일과 비밀번호를 입력하세요.')
+		// 	return
+		// }
 		router.push('/recommned_page')
 	}
 
