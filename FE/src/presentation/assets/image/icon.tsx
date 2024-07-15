@@ -120,6 +120,11 @@ const icons = {
 			/>
 		</svg>
 	),
+	circle: (
+		<svg xmlns="http://www.w3.org/2000/svg" width="217" height="217" viewBox="0 0 217 217" fill="none">
+		<circle cx="108.5" cy="108.5" r="107.5" fill="#F8F8F8" stroke="#E6E6E6" stroke-width="2"/>
+		</svg>
+	)
 }
 
 const Icon = ({ type, ...props }) => {

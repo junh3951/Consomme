@@ -12,6 +12,7 @@ import SidebarButton from '@/presentation/components/sidebar_button/sidebar_butt
 function App() {
 	const [inputValue, setInputValue] = useState('')
 	const [selectedCategory, setSelectedCategory] = useState(null)
+	const [selectedTrend, setSelectedTrend] = useState(null)
 	const router = useRouter()
 
 	const handleInputChange = (e) => {
@@ -20,6 +21,10 @@ function App() {
 
 	const handleCategoryClick = (category) => {
 		setSelectedCategory(category)
+	}
+
+	const handleTrendClick = (trend) => {
+		setSelectedTrend(trend)
 	}
 
 	return (
@@ -81,32 +86,12 @@ function App() {
 						/>
 						<RoundButton
 							type={
-								selectedCategory === '교육'
-									? 'highlight'
-									: 'default'
-							}
-							text="교육"
-							onClick={() => handleCategoryClick('교육')}
-						/>
-						<RoundButton
-							type={
 								selectedCategory === '엔터테인먼트'
 									? 'highlight'
 									: 'default'
 							}
 							text="엔터테인먼트"
 							onClick={() => handleCategoryClick('엔터테인먼트')}
-						/>
-						<RoundButton
-							type={
-								selectedCategory === '영화/애니메이션'
-									? 'highlight'
-									: 'default'
-							}
-							text="영화/애니메이션"
-							onClick={() =>
-								handleCategoryClick('영화/애니메이션')
-							}
 						/>
 						<RoundButton
 							type={
@@ -124,7 +109,9 @@ function App() {
 									: 'default'
 							}
 							text="게임"
-							onClick={() => handleCategoryClick('게임')}
+							onClick={() =>
+								handleCategoryClick('게임')
+							}
 						/>
 						<RoundButton
 							type={
@@ -137,81 +124,28 @@ function App() {
 						/>
 						<RoundButton
 							type={
-								selectedCategory === '가족'
+								selectedCategory === '애완동물/동물'
 									? 'highlight'
 									: 'default'
 							}
-							text="가족"
-							onClick={() => handleCategoryClick('가족')}
-						/>
-						<RoundButton
-							type={
-								selectedCategory === '노하우/스타일'
-									? 'highlight'
-									: 'default'
-							}
-							text="노하우/스타일"
-							onClick={() => handleCategoryClick('노하우/스타일')}
-						/>
-						<RoundButton
-							type={
-								selectedCategory === '음악'
-									? 'highlight'
-									: 'default'
-							}
-							text="음악"
-							onClick={() => handleCategoryClick('음악')}
-						/>
-						<RoundButton
-							type={
-								selectedCategory === '뉴스/정치'
-									? 'highlight'
-									: 'default'
-							}
-							text="뉴스/정치"
-							onClick={() => handleCategoryClick('뉴스/정치')}
-						/>
-						<RoundButton
-							type={
-								selectedCategory === '비영리/사회운동'
-									? 'highlight'
-									: 'default'
-							}
-							text="비영리/사회운동"
-							onClick={() =>
-								handleCategoryClick('비영리/사회운동')
-							}
-						/>
-						<RoundButton
-							type={
-								selectedCategory === '인물/블로그'
-									? 'highlight'
-									: 'default'
-							}
-							text="인물/블로그"
-							onClick={() => handleCategoryClick('인물/블로그')}
-						/>
-						<RoundButton
-							type={
-								selectedCategory === '과학기술'
-									? 'highlight'
-									: 'default'
-							}
-							text="과학기술"
-							onClick={() => handleCategoryClick('과학기술')}
-						/>
-						<RoundButton
-							type={
-								selectedCategory === '기타'
-									? 'highlight'
-									: 'default'
-							}
-							text="기타"
-							onClick={() => handleCategoryClick('기타')}
+							text="애완동물/동물"
+							onClick={() => handleCategoryClick('애완동물/동물')}
 						/>
 					</div>
+					<div className="h-[23px]" />
+					<div className="subheader-text-container">
+						트렌드 키워드 선택
+					</div>
+					<div className="sub-subheader-text-container">
+						선택하신 카테고리 내 최근 N개월 동안 관련 결과 분석 콘텐트에서 높은 빈도수를 보이는 키워드를 시각화하여 보여준 그래프입니다.
+					</div>
 					<div className="h-[25px]" />
+					<div className="trend-button-container">
+						<button className='trendButton1'/>
+						
+					</div>
 					<RectButton
+						className='generate_button'
 						type="highlight"
 						text="생성하기"
 						onClick={() =>

@@ -111,6 +111,16 @@ main {
 	color: black;
 }
 
+.sub-subheader-text-container{
+	position: relative;
+	color: #464646;
+	font-family: Pretendard;
+	font-size: 90%;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 140%; /* 28px */
+}
+
 .right-content-box {
 	position: absolute;
 	right: 0;
@@ -157,4 +167,35 @@ main {
 	background: #2f2f2f;
 	background: color(display-p3 0.1824 0.1824 0.1824);
 	color: #fff; /* Adjust the text color as needed */
+}
+
+.trend-button-container {
+	position: relative;
+	height: 32%;
+	width: 40%;
+}
+
+.trendButton1 {
+	position: relative;
+	width: 56.25%;
+	height: 300%;
+	border-radius: 50%;
+	flex-shrink: 0;
+	fill: #F8F8F8;
+	stroke-width: 2px;
+	stroke: #E6E6E6;
+	left: 45%;
+}
+
+.keyword-circle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background-color: #ededed;
+	font-family: 'PretendardVariable', sans-serif;
+	font-size: 14px;
+	color: #000;
+	text-align: center;
+	margin: 10px;
 }
