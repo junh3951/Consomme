@@ -14,7 +14,7 @@ main {
 	font-family: 'PretendardVariable', sans-serif;
 	font-size: 190%;
 	margin-top: 16px;
-	color: black;
+	color: #191919;
 }
 
 .subheader-text-container {
@@ -22,9 +22,9 @@ main {
 	left: calc(anchor(right) + 20px);
 	font-family: 'PretendardVariable', sans-serif;
 	font-size: 130%;
-	font-weight: 400;
-	margin-top: 16px;
-	color: black;
+	font-weight: 600;
+	/* margin-top: 16px; */
+	color: #191919;
 }
 
 .right-content-box {
@@ -51,8 +51,8 @@ main {
   }
   
 .content-box {
-	background-color: #fff;
-	border: 1px solid #ddd;
+	background-color: #F8F8F8;
+	border: 2px solid #E6E6E6;
 	border-radius: 10px;
 	padding: 20px;
 	display: flex;
@@ -66,26 +66,28 @@ main {
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
   
-.content-box h3 {
-	font-size: 14px;
-	color: #888;
-	margin-bottom: 10px;
-}
-  
-.content-box h4 {
-	font-size: 18px;
-	font-weight: bold;
-	margin-bottom: 10px;
-}
-  
-.content-box p {
+.content-box-label {
 	font-size: 16px;
-	color: #333;
+	color: #606060;
+	margin-bottom: 10px;
+}
+  
+.content-title-text {
+	font-size: 18px;
+	font-weight: 700;
+	margin-bottom: 10px;
+	color: #191919;
+}
+  
+.content-box-text {
+	font-size: 18px;
+	color: #606060;
+	font-weight: 600;
 }
   
 .date {
-	font-size: 14px;
-	color: #aaa;
+	font-size: 16px;
+	color: #AEAEAE;
 	text-align: right;
 	margin-top: 20px;
 }

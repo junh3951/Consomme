@@ -9,9 +9,9 @@
 	color: #191919;
 	color: color(display-p3 0.098 0.098 0.098);
 	font-family: 'Pretendard', sans-serif;
-	font-size: 13px;
+	font-size: 20px;
 	font-style: normal;
-	font-weight: 400;
+	font-weight: 500;
 	line-height: normal;
 	margin-bottom: 4px;
 }
@@ -25,12 +25,12 @@
 	border: 2px solid color(display-p3 0.7686 0.7686 0.7686);
 	padding: 0 12px;
 	font-family: 'Pretendard', sans-serif;
-	font-weight: 400;
-	font-size: 16px;
+	font-weight: 500;
+	font-size: 20px;
 	color: #191919;
 }
 
 .input-field::placeholder {
-	color: #c4c4c4;
-	color: color(display-p3 0.7686 0.7686 0.7686);
+	color: #B0B0B0;
+	color: color(display-p3 0.690 0.690 0.690);
 }
