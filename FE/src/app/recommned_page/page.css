@@ -158,3 +158,23 @@ main {
 	background: color(display-p3 0.1824 0.1824 0.1824);
 	color: #fff; /* Adjust the text color as needed */
 }
+
+.keyword-circles {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	justify-content: center;
+}
+
+.keyword-circle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background-color: #ededed;
+	font-family: 'PretendardVariable', sans-serif;
+	font-size: 14px;
+	color: #000;
+	text-align: center;
+	margin: 10px;
+}

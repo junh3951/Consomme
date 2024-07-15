@@ -26,12 +26,14 @@
 	border-radius: 10px;
 	padding: 10px 12px;
 	font-family: 'Pretendard', sans-serif;
-	font-weight: 300;
-	font-size: 20px;
-	color: #000000dc;
+	font-weight: 500;
+	font-size: 18px;
+	color: #2F2F2F;
 	display: flex;
 	align-items: center;
-	background-color: rgb(238, 238, 238);
+	background-color: #F8F8F8;
+	border: 2px solid #E6E6E6;
 	white-space: normal; /* Allow text to wrap */
 	word-wrap: break-word; /* Break words if necessary */
+	margin-top: 10px;
 }
