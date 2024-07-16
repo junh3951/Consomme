@@ -1,65 +1,73 @@
 'use client'
 
 import './page.css'
-import React, { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import React from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import RectButton from '@/presentation/components/rect_button/rect_button'
+import DefinedField from '@/presentation/components/defined_text_field/defined_text_field'
+import ReferenceField from '@/presentation/components/reference_field/reference_field'
 
-function App() {
+function DetailPage() {
 	const router = useRouter()
+	const searchParams = useSearchParams()
+	const title = searchParams.get('title') || '기본 제목'
 
-	const contents = [//보관된 소재
+	const references = [//유튜브 링크 일단 const로 작성했어요
 		{
-		  title: '몽골로 단돈 150만원으로 한달살기하기',
-		  reason: '현재 227만 구독자를 보유한 빠니보틀이 몽골로 여행을 간 영상이 175만회라는 조회수를 기록하며 큰 인기를 끌고 있습니다. 더불어, 현재 한달살기 컨텐츠로 \'n만원으로 살아남기\' 소재가 유행하는 트렌드임에 주목해 해당 영상 소재를 추천드립니다.',
-		  date: '2024.07.09'
+			link: 'https://www.youtube.com/watch?v=bBVMnsp_qzQ',
+			title: '중앙아시아 유목민 천막 가보기',
+			channel: '빠니보틀'
 		},
 		{
-		  title: '몽골로 단돈 150만원으로 한달살기하기',
-		  reason: '현재 227만 구독자를 보유한 빠니보틀이 몽골로 여행을 간 영상이 175만회라는 조회수를 기록하며 큰 인기를 끌고 있습니다. 더불어, 현재 한달살기 컨텐츠로 \'n만원으로 살아남기\' 소재가 유행하는 트렌드임에 주목해 해당 영상 소재를 추천드립니다.',
-		  date: '2024.07.09'
+			link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+			title: '크로아티아 스탬으로 살아남기',
+			channel: '슈리링'
 		},
 		{
-		  title: '몽골로 단돈 150만원으로 한달살기하기',
-		  reason: '현재 227만 구독자를 보유한 빠니보틀이 몽골로 여행을 간 영상이 175만회라는 조회수를 기록하며 큰 인기를 끌고 있습니다. 더불어, 현재 한달살기 컨텐츠로 \'n만원으로 살아남기\' 소재가 유행하는 트렌드임에 주목해 해당 영상 소재를 추천드립니다.',
-		  date: '2024.07.09'
-		},
-		{
-		  title: '몽골로 단돈 150만원으로 한달살기하기',
-		  reason: '현재 227만 구독자를 보유한 빠니보틀이 몽골로 여행을 간 영상이 175만회라는 조회수를 기록하며 큰 인기를 끌고 있습니다. 더불어, 현재 한달살기 컨텐츠로 \'n만원으로 살아남기\' 소재가 유행하는 트렌드임에 주목해 해당 영상 소재를 추천드립니다.',
-		  date: '2024.07.09'
-		},
-	  ];
-
-	const numOfContents = contents.length;
-
-	const handleCardClick = (title) => {
-		const params = new URLSearchParams({ title }).toString();
-		router.push(`/detail_page?${params}`);
-	};
+			link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+			title: '태국에서 하루 2만원으로 살아남기',
+			channel: '쏘이 유튜브'
+		}
+	]
 
 	return (
-		<div className="right-content-container">
-			<div className="h-[83px]" />
-			<div className="header-text-container">
-				소재 보관함
-			</div>
-			<div className="h-[23px]" />
-			<div className="subheader-text-container">
-				생성된 소재 ({numOfContents})
-			</div>
-			<div className="h-[23px]" />
-			<div className="content-grid">
-				{contents.map((content, index) => (
-					<div className="content-box" key={index} onClick={() => handleCardClick(content.title)}>              
-						<div className="content-box-label">소재</div>
-						<div className="content-title-text">{content.title}</div>
-						<div className="content-box-label">소재 추천 이유</div>
-						<div className="content-box-text">{content.reason}</div>
-						<div className="date">{content.date}</div>
-					</div>
-				))}
+		<div className="right-content-box">
+			<div className="right-content-container">
+				<div className="h-[83px]" />
+				<button className="back-button"
+					onClick={() =>
+						router.push(
+							`/recommned_page`,
+						)
+					}
+				>← 콘텐츠 영상 소재 생성하기</button>
+				<div className="h-[23px]" />
+				<DefinedField
+					label="소재 제목"
+					value={title}
+				/>
+				<div className="h-[23px]" />
+				<div className="subheader-text-container">
+					참고정보
+				</div>
+				<div className="h-[10px]" />
+				<ReferenceField references={references} />
+				<div className="h-[23px]" />
+				<DefinedField
+					label="소재 추천 이유"
+					value="최근 여행 콘텐츠 중에서도 경제적인 여행에 대한 관심이 높아지고 있습니다. '짠돌이남친이랑 이상한 제주도여행..'이라는 제목의 영상은 경제적인 여행 방법에 대한 관심을 반영합니다. 이를 통해 예산을 최소화하면서도 즐거운 여행 경험을 제공하는 콘텐츠는 많은 이들에게 유용한 정보와 재미를 제공할 수 있습니다. 또한, 이러한 형식의 콘텐츠는 여행지의 숨은 가치를 발견하고, 창의적인 여행 계획을 세우는 데 도움을 줄 수 있으며, 시청자들에게 예산 관리에 대한 영감을 제공"
+				/>
+				<div className="h-[23px]" />
+				<div className="button-container">
+					<RectButton
+						type="highlight"
+						text="보관함으로 돌아가기"
+						onClick={() => router.push('/archive_page')}
+					/>
+				</div>
 			</div>
 		</div>
 	)
 }
-export default App
+
+export default DetailPage

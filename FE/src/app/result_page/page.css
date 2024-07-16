@@ -14,17 +14,19 @@ main {
 	font-family: 'PretendardVariable', sans-serif;
 	font-size: 190%;
 	margin-top: 16px;
-	color: #191919;
+	color: black;
 }
 
 .subheader-text-container {
 	position: relative;
 	left: calc(anchor(right) + 20px);
-	font-family: 'PretendardVariable', sans-serif;
-	font-size: 130%;
-	font-weight: 600;
-	/* margin-top: 16px; */
+	margin-top: 16px;
 	color: #191919;
+	color: color(display-p3 0.098 0.098 0.098);
+	font-family: 'Pretendard', sans-serif;
+	font-size: 20px;
+	font-weight: 600;
+	/* line-height: normal; */
 }
 
 .right-content-box {
@@ -44,50 +46,21 @@ main {
 	justify-content: flex-start;
 }
 
-.content-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-	gap: 20px;
-  }
-  
-.content-box {
-	background-color: #F8F8F8;
-	border: 2px solid #E6E6E6;
-	border-radius: 10px;
-	padding: 20px;
+.button-container {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
-	cursor: pointer;
-	transition: box-shadow 0.3s ease;
+	align-items: flex-end;
+	width: 50%;
+	min-width: 300px;
 }
 
-.content-box:hover {
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-  
-.content-box-label {
-	font-size: 16px;
-	color: #606060;
-	margin-bottom: 10px;
-}
-  
-.content-title-text {
-	font-size: 18px;
-	font-weight: 700;
-	margin-bottom: 10px;
+.back-button {
+	font-family: 'PretendardVariable', sans-serif;
+	font-size: 190%;
+	margin-top: 16px;
 	color: #191919;
-}
-  
-.content-box-text {
-	font-size: 18px;
-	color: #606060;
-	font-weight: 600;
-}
-  
-.date {
-	font-size: 16px;
-	color: #AEAEAE;
-	text-align: right;
-	margin-top: 20px;
+	width: 420px;
+	background-color: white !important;
+	border: none;
+	margin-left: -50px;
 }
