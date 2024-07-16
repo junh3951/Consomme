@@ -14,10 +14,10 @@ const Layout = ({ children, activePage }) => {
       <div className="left-sidebar">
         <div className="h-[90px]" />
         <div className="head-logo-box">
-          <div className="head-logo-container">
+          <div className="head-logo-container" onClick={() => router.push('/recommned_page')} style={{ cursor: 'pointer' }}>
             <Icon type="logo-icon" className="head-logo" />
           </div>
-          <div className="head-logo-text-container">Consommé</div>
+          <div className="head-logo-text-container" onClick={() => router.push('/recommned_page')} style={{ cursor: 'pointer' }}>Consommé</div>
         </div>
         <div className="h-[10px]" />
         <div className="text-box">
