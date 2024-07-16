@@ -12,20 +12,22 @@ const getYouTubeThumbnailURL = (videoID) => {
 }
 
 const ReferenceField = ({ references }) => (
-	<div className="reference-field">
-		{references.map((ref, index) => {
-			const videoID = getYouTubeVideoID(ref.link)
-			const thumbnailURL = videoID ? getYouTubeThumbnailURL(videoID) : null
-			return (
-				<a key={index} href={ref.link} className="reference-item">
-					{thumbnailURL && <img src={thumbnailURL} alt="YouTube Thumbnail" className="thumbnail" />}
-					<div className="reference-details">
-						<p className="reference-title">{ref.title}</p>
-						<p className="reference-channel">{ref.channel}</p>
-					</div>
-				</a>
-			)
-		})}
+	<div className="reference-field-container">
+		<div className="reference-field">
+			{references.map((ref, index) => {
+				const videoID = getYouTubeVideoID(ref.link)
+				const thumbnailURL = videoID ? getYouTubeThumbnailURL(videoID) : null
+				return (
+					<a key={index} href={ref.link} className="reference-item">
+						{thumbnailURL && <img src={thumbnailURL} alt="YouTube Thumbnail" className="thumbnail" />}
+						<div className="reference-details">
+							<p className="reference-title">{ref.title}</p>
+							<p className="reference-channel">{ref.channel}</p>
+						</div>
+					</a>
+				)
+			})}
+		</div>
 	</div>
 )
 

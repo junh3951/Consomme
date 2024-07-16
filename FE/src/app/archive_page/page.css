@@ -10,6 +10,30 @@ main {
 	background-color: white;
 }
 
+.flex {
+	display: flex;
+}
+
+.min-h-screen {
+	min-height: 100vh;
+}
+
+.flex-col {
+	flex-direction: column;
+}
+
+.items-center {
+	align-items: center;
+}
+
+.justify-center {
+	justify-content: center;
+}
+
+.bg-white {
+	background-color: white;
+}
+
 .header-text-container {
 	font-family: 'PretendardVariable', sans-serif;
 	font-size: 190%;

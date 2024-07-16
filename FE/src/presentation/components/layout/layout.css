@@ -6,7 +6,7 @@
 }
 
 .left-sidebar {
-	position: absolute;
+	position: fixed;
 	left: 0;
 	width: 300px;
 	min-width: 300px;
@@ -59,8 +59,12 @@
 }
 
 .main-content {
+	/* position: relative; */
+	/* left: 300px; */
+	/* min-width: 500px; */
 	flex: 1;
 	overflow-y: auto;
 	box-sizing: border-box;
+	background-color: white;
 	/* margin-left: 400px; */
 }
