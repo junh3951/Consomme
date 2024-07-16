@@ -253,24 +253,5 @@ main {
 	margin-left: -18.53%; /* -278px / 1500px */
 	margin-top: -29.13%; /* -437px / 1500px */
 }
-=======
-.keyword-circles {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px;
-	justify-content: center;
-}
 
-.keyword-circle {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 50%;
-	background-color: #ededed;
-	font-family: 'PretendardVariable', sans-serif;
-	font-size: 14px;
-	color: #000;
-	text-align: center;
-	margin: 10px;
-}
 
