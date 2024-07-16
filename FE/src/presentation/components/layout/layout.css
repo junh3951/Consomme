@@ -26,6 +26,7 @@
 	align-items: center;
 	background: #F2F2FF;
 	background: color(display-p3 0.9490196 0.9490196 1);
+	padding-top: 90px; /*layout.js의 여백이 적용안돼서 일단 추가*/
 }
 
 .head-logo-box {
@@ -86,3 +87,41 @@
 	align-items: center;
 }
 
+.footer {
+    margin-top: auto;
+    bottom: 20px; /* 화면 하단에 위치시키기 위한 설정 */
+}
+  
+.review-box {
+    display: flex;
+    background-color: #D9D9D9;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+  
+.review-icon {
+    width: 80px;
+}
+  
+.text-wrapper {
+    font-size: 21px;
+    color: #191919;
+    line-height: 140%;
+}
+
+.id {
+    font-size: 16px;
+	color: #665EF9;
+}
+  
+.badge {
+    border-radius: 35px;
+    border: 2px solid #665EF9;
+    background: #CFCDFF;
+	color: #665EF9;
+    font-size: 14px;
+    padding: 4px 12px;
+}
