@@ -27,21 +27,7 @@ const keywords = [
 	// 추가 키워드들
 ];
 
-function KeywordCircles({ keywords }) {
-	return (
-		<div className="keyword-circles">
-			{keywords.map((keyword, index) => (
-				<div
-					key={index}
-					className="keyword-circle"
-					style={{ width: keyword.size, height: keyword.size }}
-				>
-					{keyword.text}
-				</div>
-			))}
-		</div>
-	);
-}
+
 
 function App() {
 	const trendsByCategory = {
@@ -186,7 +172,7 @@ function App() {
 						text="생성하기"
 						onClick={() =>
 							router.push(
-								`/result_page?category=${selectedCategory}`,
+								`/generate_page?category=${selectedCategory}`,
 							)
 						}
 						disabled={!selectedCategory}
