@@ -1,8 +1,7 @@
 'use client'
 
 import { Inter } from "next/font/google";
-// import "./globals.css";
-import "../presentation/assets/style/Global.css";
+import "./globals.css";
 import { usePathname } from 'next/navigation'
 import Layout from '@/presentation/components/layout/layout'
 
