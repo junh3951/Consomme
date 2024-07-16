@@ -15,6 +15,11 @@ export default function SignUp() {
 	const [name, setName] = useState('')
 
 	const handleSignUp = () => {
+		if (!email || !password || !passwordAgain || !name) {
+			alert('모든 필드를 입력하세요.')
+			return
+		}
+
 		if (password !== passwordAgain) {
 			alert('비밀번호가 일치하지 않습니다.')
 			return
