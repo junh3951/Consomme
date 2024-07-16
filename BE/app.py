@@ -7,21 +7,25 @@ import re
 import openai
 from collections import Counter
 from dotenv import load_dotenv
+import re
 
-# .env 파일 로드
+
+#######
+
+
 load_dotenv()
-
-# API 키 설정
 YOUTUBE_API_KEY = os.getenv('YOUTUBE_API_KEY')
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
-# OpenAI API 키 설정
 openai.api_key = OPENAI_API_KEY
 
-# API 클라이언트 생성
 youtube = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
 
 app = Flask(__name__)
+
+
+#######
+
 
 def fetch_videos(query, max_results=100):
     today = datetime.utcnow()
@@ -54,7 +58,7 @@ def process_video_items(items, video_list):
         video_id = item['id']['videoId']
         title = item['snippet']['title']
         description = item['snippet']['description']
-        if any('\u3131' <= char <= '\uD79D' for char in title):  # 제목에 한국어 포함 확인
+        if any('\u3131' <= char <= '\uD79D' for char in title): 
             video_list.append({'videoId': video_id, 'title': title, 'description': description})
 
 def fetch_video_details(video_ids):
@@ -91,6 +95,40 @@ def generate_trending_titles(titles, chosen_keyword, search_keyword):
     
     return response.choices[0].message['content'].strip()
 
+def enhance_recommendation(selected_trending, enhancement_instruction):
+    messages = [
+        {"role": "system", "content": 
+        "###임무### 너는 입력받은 콘텐츠 소재를 추가 지시사항에 기반하여 개선해주는 것이 너의 역할이야. \
+            ###입력### user가 선택한 추천 소재와 추가 지시사항을 받을거야. \
+            ###예시입력### selected_trending: ### 콘텐츠 소재 3: MBTI 유형별 맞춤 쿡방 레시피 개발하기\n**소재 추천 이유:**\nMBTI 유형별로 각기 다른 요리 선호도와 스타일을 분석하여, 그에 맞는 맞춤형 레시피를 개발하고 제공하는 콘텐츠입니다. 예를 들어, 내향적인 성격 유형에게는 간단하면서도 맛있는 요리를, 외향적인 성격 유형에게는 파티용 대접 요리를 제안합니다. 이러한 콘텐츠는 MBTI에 관심 있는 사람들 뿐만 아니라 요리에 관심 있는 다양한 시청자들에게 유용한 정보를 제공할 수 있습니다.\
+    enhancement_instruction: MBTI라는 특성이 더 잘 드러나도록 추천해줘 \
+            ###예시출력### ### 콘텐츠 소재 3: 쿡방 레시피 보고 MBTI 맞춰보기\n**소재 추천 이유:**\nMBTI 유형별로 각기 다른 요리 선호도와 스타일을 분석하여, 다른사람이 만든 레시피만을보고 그사람의 MBTI를 맞추는 콘텐츠입니다. 예를 들어, 내향적인 성격 유형은 간단하면서도 맛있는 요리를, 외향적인 성격 유형에게는 파티용 대접 요리를 할것입니다. 이러한 콘텐츠는 MBTI에 관심 있는 사람들 뿐만 아니라 요리에 관심 있는 다양한 시청자들에게 흥미로운 콘텐츠를 제공하며,MBTI의 특성이 잘 드러나는 콘텐츠입니다. \
+            "},
+        {"role": "user", "content": f"선택된 소재: {selected_trending}\n\n추가 지시: {enhancement_instruction}"}
+    ]
+
+    response = openai.ChatCompletion.create(
+        model="gpt-4-turbo",
+        messages=messages,
+        max_tokens=1000,
+        n=1,
+        temperature=0.7
+    )
+
+    return response.choices[0].message['content'].strip()
+
+def clean_word(word):
+    word = word.lstrip('#')
+    word = re.sub(r'(은|는|을|를|이|가|의|에|와|과|도|로|으로|와|과|도|에서|에게|부터|까지|만|밖에|조차|마저|나마|커녕|보다|처럼|같이|듯이|채|이라서|이라서|하고|하고)$', '', word)
+    return word
+
+def contains_special_characters(word):
+    return bool(re.search(r'[^a-zA-Z0-9가-힣]', word))
+
+
+#######
+
+
 @app.route('/search', methods=['POST'])
 def search_videos():
     data = request.json
@@ -114,18 +152,18 @@ def search_videos():
 
     for video, video_info in zip(videos_keyword, videos_response_keyword):
         video['channelTitle'] = video_info['snippet']['channelTitle']
-        video['channelSubscribers'] = video_info['statistics'].get('subscriberCount', 'Unknown')
+        video['videoId'] = video_info['id']
         video['viewCount'] = video_info['statistics']['viewCount']
 
     for video, video_info in zip(videos_category, videos_response_category):
         video['channelTitle'] = video_info['snippet']['channelTitle']
-        video['channelSubscribers'] = video_info['statistics'].get('subscriberCount', 'Unknown')
+        video['videoId'] = video_info['id']
         video['viewCount'] = video_info['statistics']['viewCount']
 
     df_keyword = pd.DataFrame(videos_keyword)
     df_category = pd.DataFrame(videos_category)
-    df_keyword = df_keyword[['title', 'description', 'channelTitle', 'channelSubscribers', 'viewCount']]
-    df_category = df_category[['title', 'description', 'channelTitle', 'channelSubscribers', 'viewCount']]
+    df_keyword = df_keyword[['title', 'description', 'channelTitle', 'videoId', 'viewCount']]
+    df_category = df_category[['title', 'description', 'channelTitle', 'videoId', 'viewCount']]
 
     df_keyword['viewCount'] = df_keyword['viewCount'].astype(int)
     df_category['viewCount'] = df_category['viewCount'].astype(int)
@@ -138,15 +176,27 @@ def search_videos():
 
     titles_category = df_category['title'].tolist()
     all_words_category = ' '.join(titles_category).split()
-    words_filtered_category = [word for word in all_words_category if len(word) > 1]
+    words_filtered_category = [clean_word(word) for word in all_words_category if len(word) > 1]
     word_freq_category = Counter(words_filtered_category)
-    top_keywords_category = [word for word, freq in word_freq_category.most_common(7)]
+    top_keywords = [word for word, freq in word_freq_category.most_common(10)]
+
+    # 중복 제거 및 특수 문자 포함된 키워드 제거
+    final_keywords = []
+    seen = set()
+    for word in top_keywords:
+        if word not in seen and not contains_special_characters(word):
+            seen.add(word)
+            final_keywords.append(word)
+        if len(final_keywords) == 7:
+            break
 
     return jsonify({
         'message': '검색 및 파일 저장 완료',
         'filename_keyword': filename_keyword,
         'filename_category': filename_category,
-        'top_keywords_category': top_keywords_category
+        'top_keywords_category': final_keywords,
+        'video_ids_keyword': video_ids_keyword,
+        'video_ids_category': video_ids_category
     })
 
 @app.route('/generate', methods=['POST'])
@@ -160,8 +210,27 @@ def generate_titles():
     titles_str_category = '\n'.join(titles_category)
     trending_titles_category = generate_trending_titles(titles_str_category, chosen_keyword, search_keyword)
 
+    trending_titles = trending_titles_category.split('\n\n')
+    if len(trending_titles) >= 3:
+        trending_1, trending_2, trending_3 = trending_titles[0], trending_titles[1], trending_titles[2]
+    else:
+        trending_1, trending_2, trending_3 = "", "", ""
+
     return jsonify({
-        'trending_titles_category': trending_titles_category
+        'trending_1': trending_1,
+        'trending_2': trending_2,
+        'trending_3': trending_3
+    })
+
+@app.route('/enhance', methods=['POST'])
+def enhance_title():
+    data = request.json
+    selected_trending = data.get('selected_trending')
+    enhancement_instruction = data.get('enhancement_instruction')
+    enhanced_recommendation = enhance_recommendation(selected_trending, enhancement_instruction)
+
+    return jsonify({
+        'enhanced_recommendation': enhanced_recommendation
     })
 
 if __name__ == '__main__':

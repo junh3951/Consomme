@@ -39,6 +39,20 @@ app.post('/generate', async (req, res) => {
 	}
 })
 
+app.post('/enhance', async (req, res) => {
+	try {
+		const { selected_trending, enhancement_instruction } = req.body
+		const response = await axios.post('http://localhost:5001/enhance', {
+			selected_trending: selected_trending,
+			enhancement_instruction: enhancement_instruction,
+		})
+		res.json(response.data)
+	} catch (error) {
+		console.error(error)
+		res.status(500).send('Error during the enhancement')
+	}
+})
+
 app.listen(port, '0.0.0.0', () => {
 	console.log(`Server is running at http://localhost:${port}`)
 })
