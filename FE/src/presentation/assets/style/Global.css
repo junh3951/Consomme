@@ -19,3 +19,7 @@ main {
 	margin: 0 auto;
 	box-sizing: border-box;
 }
+
+.main-content {
+    background-color: white;
+}
