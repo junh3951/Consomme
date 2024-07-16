@@ -38,26 +38,28 @@ function App() {
 	};
 
 	return (
-		<div className="right-content-container">
-			<div className="h-[83px]" />
-			<div className="header-text-container">
-				소재 보관함
-			</div>
-			<div className="h-[23px]" />
-			<div className="subheader-text-container">
-				생성된 소재 ({numOfContents})
-			</div>
-			<div className="h-[23px]" />
-			<div className="content-grid">
-				{contents.map((content, index) => (
-					<div className="content-box" key={index} onClick={() => handleCardClick(content.title)}>              
-						<div className="content-box-label">소재</div>
-						<div className="content-title-text">{content.title}</div>
-						<div className="content-box-label">소재 추천 이유</div>
-						<div className="content-box-text">{content.reason}</div>
-						<div className="date">{content.date}</div>
-					</div>
-				))}
+		<div className="right-content-box">
+			<div className="right-content-container">
+				<div className="h-[83px]" />
+				<div className="header-text-container">
+					소재 보관함
+				</div>
+				<div className="h-[23px]" />
+				<div className="subheader-text-container">
+					생성된 소재 ({numOfContents})
+				</div>
+				<div className="h-[23px]" />
+				<div className="content-grid">
+					{contents.map((content, index) => (
+						<div className="content-box" key={index} onClick={() => handleCardClick(content.title)}>              
+							<div className="content-box-label">소재</div>
+							<div className="content-title-text">{content.title}</div>
+							<div className="content-box-label">소재 추천 이유</div>
+							<div className="content-box-text">{content.reason}</div>
+							<div className="date">{content.date}</div>
+						</div>
+					))}
+				</div>
 			</div>
 		</div>
 	)

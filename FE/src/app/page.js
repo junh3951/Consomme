@@ -18,12 +18,6 @@ export default function Home() {
 			alert('이메일과 비밀번호를 입력하세요.')
 			return
 		}
-		router.push('/recommned_page')
-
-		if (!email || !password) {
-			alert('이메일과 비밀번호를 입력하세요.')
-			return
-		}
 
 		const user = JSON.parse(localStorage.getItem(email))
 		if (user && user.password === password) {

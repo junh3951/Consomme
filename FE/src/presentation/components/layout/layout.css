@@ -61,6 +61,6 @@
 .main-content {
 	flex: 1;
 	overflow-y: auto;
-	/* box-sizing: border-box; */
-	margin-left: 400px;
+	box-sizing: border-box;
+	/* margin-left: 400px; */
 }
