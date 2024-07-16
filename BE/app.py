@@ -119,7 +119,7 @@ def enhance_recommendation(selected_trending, enhancement_instruction):
 
 def clean_word(word):
     word = word.lstrip('#')
-    word = re.sub(r'(은|는|을|를|이|가|의|에|와|과|도|로|으로|와|과|도|에서|에게|부터|까지|만|밖에|조차|마저|나마|커녕|보다|처럼|같이|듯이|채|이라서|이라서|하고|하고|으면|하면)$', '', word)
+    word = re.sub(r'(은|는|을|를|이|가|의|에|와|과|도|로|으로|와|과|도|에서|에게|부터|까지|만|밖에|조차|마저|나마|커녕|보다|처럼|같이|듯이|채|이라서|이라서|하고|하고|으면|하면|들)$', '', word)
     return word
 
 def contains_special_characters(word):
