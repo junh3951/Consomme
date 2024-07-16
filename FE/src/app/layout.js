@@ -1,7 +1,8 @@
 'use client'
 
 import { Inter } from "next/font/google";
-import "./globals.css";
+// import "./globals.css";
+import "../presentation/assets/style/Global.css";
 import { usePathname } from 'next/navigation'
 import Layout from '@/presentation/components/layout/layout'
 
@@ -23,10 +24,12 @@ export default function RootLayout({ children }) {
   let activePage = ''
   if (pathname === '/recommned_page') {
     activePage = 'recommned_page'
+  } else if (pathname === '/result_page') {
+    activePage = 'recommned_page'
   } else if (pathname === '/archive_page') {
     activePage = 'archive_page'
-  } else if (pathname === '/dashboard') {
-    activePage = 'dashboard'
+  } else if (pathname === '/detail_page') {
+    activePage = 'archive_page'
   }
 
   return (
