@@ -119,7 +119,7 @@ def enhance_recommendation(selected_trending, enhancement_instruction):
 
 def clean_word(word):
     word = word.lstrip('#')
-    word = re.sub(r'(은|는|을|를|이|가|의|에|와|과|도|로|으로|와|과|도|에서|에게|부터|까지|만|밖에|조차|마저|나마|커녕|보다|처럼|같이|듯이|채|이라서|이라서|하고|하고)$', '', word)
+    word = re.sub(r'(은|는|을|를|이|가|의|에|와|과|도|로|으로|와|과|도|에서|에게|부터|까지|만|밖에|조차|마저|나마|커녕|보다|처럼|같이|듯이|채|이라서|이라서|하고|하고|으면|하면)$', '', word)
     return word
 
 def contains_special_characters(word):
@@ -127,7 +127,6 @@ def contains_special_characters(word):
 
 
 #######
-
 
 @app.route('/search', methods=['POST'])
 def search_videos():
@@ -176,15 +175,15 @@ def search_videos():
 
     titles_category = df_category['title'].tolist()
     all_words_category = ' '.join(titles_category).split()
-    words_filtered_category = [clean_word(word) for word in all_words_category if len(word) > 1]
+    words_filtered_category = [clean_word(word) for word in all_words_category if len(word) > 1 and word not in [search_keyword, category]]
     word_freq_category = Counter(words_filtered_category)
-    top_keywords = [word for word, freq in word_freq_category.most_common(10)]
+    top_keywords = [word for word, freq in word_freq_category.most_common(15)]
 
     # 중복 제거 및 특수 문자 포함된 키워드 제거
     final_keywords = []
     seen = set()
     for word in top_keywords:
-        if word not in seen and not contains_special_characters(word):
+        if word not in seen and not contains_special_characters(word) and len(word) > 1:
             seen.add(word)
             final_keywords.append(word)
         if len(final_keywords) == 7:
