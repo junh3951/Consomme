@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
   const pathname = usePathname();
 
   // main과 signup 페이지를 제외한 모든 페이지에 레이아웃 적용
-  if (pathname === '/' || pathname === '/signup') {
+  if (pathname === '/' || pathname === '/signup_page') {
     return (
       <html lang="en">
         <body className={inter.className}>{children}</body>
