@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import '@/presentation/assets/style/Global.css'
 import { useRouter } from 'next/navigation'
 import Icon from '@/presentation/assets/image/icon'
 import SidebarButton from '@/presentation/components/sidebar_button/sidebar_button'
@@ -13,11 +14,11 @@ const Layout = ({ children, activePage }) => {
     <div className="layout-container">
       <div className="left-sidebar">
         <div className="h-[90px]" />
-        <div className="head-logo-box">
-          <div className="head-logo-container" onClick={() => router.push('/recommned_page')} style={{ cursor: 'pointer' }}>
+        <div className="head-logo-box" onClick={() => router.push('/recommned_page')} style={{ cursor: 'pointer' }}>
+          <div className="head-logo-container">
             <Icon type="logo-icon" className="head-logo" />
           </div>
-          <div className="head-logo-text-container" onClick={() => router.push('/recommned_page')} style={{ cursor: 'pointer' }}>Consommé</div>
+          <div className="head-logo-text-container">Consommé</div>
         </div>
         <div className="h-[10px]" />
         <div className="text-box">
