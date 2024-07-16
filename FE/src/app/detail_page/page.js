@@ -67,7 +67,7 @@ function DetailPage() {
 					<div className="h-[23px]" />
 					<div className="button-container">
 						<RectButton
-							type="highlight"
+							type="default"
 							text="보관함으로 돌아가기"
 							onClick={() => router.push('/archive_page')}
 						/>

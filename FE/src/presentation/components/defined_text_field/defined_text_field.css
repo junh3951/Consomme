@@ -22,6 +22,7 @@
 	width: 100%; /* Adjust as needed */
 	height: auto; /* Adjust height to be auto for dynamic content */
 	min-height: 50px; /* Ensure it doesn't shrink below the desired height */
+	min-width: 300px;
 	flex-shrink: 0;
 	border-radius: 10px;
 	padding: 10px 12px;
