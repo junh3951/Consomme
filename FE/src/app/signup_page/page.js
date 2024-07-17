@@ -38,53 +38,66 @@ export default function SignUp() {
 	}
 
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-center bg-white">
-			<div className="left-sidebar">
-				<div className="logo-ribbon-container">
-					<Icon type="logo-ribbon" className="sidebar-pattern" />
+		<main className="signup-flex signup-min-h-screen signup-flex-col signup-items-center signup-justify-center signup-bg-white">
+			<div className="signup-left-sidebar">
+				<div className="signup-logo-ribbon-container">
+					<Icon
+						type="logo-ribbon"
+						className="signup-sidebar-pattern"
+					/>
 				</div>
-				<div className="greeting-text">
+				<div className="signup-greeting-text">
 					10초 내로 다양한 콘텐츠 소재를 <br />
 					트렌드에 기반하여 생성해주는 <br />
 					<strong>Consommé</strong>
 				</div>
 			</div>
-			<div className="right-content-box">
-				<div className="right-content-container">
-					<div className="logo-container">
+			<div className="signup-right-content-box">
+				<div className="signup-right-content-container">
+					<div className="signup-logo-container">
 						<Icon type="logo-icon" />
 					</div>
-					<div className="text-container">회원가입</div>
+					<div className="signup-text-container">
+						Welcome to Consommé
+					</div>
 					<div className="h-[10px]" />
-					<InputWithLabel
-						label="Email"
-						placeholder="Email"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-					/>
-					<InputWithLabel
-						label="Password"
-						placeholder="Password"
-						type="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-					/>
-					<InputWithLabel
-						label="Password Again*"
-						placeholder="Password"
-						type="password"
-						value={passwordAgain}
-						onChange={(e) => setPasswordAgain(e.target.value)}
-					/>
+					<div className="signup-input-container">
+						<InputWithLabel
+							label="Email"
+							placeholder="Email"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+						/>
+					</div>
+					<div className="signup-input-container">
+						<InputWithLabel
+							label="Password"
+							placeholder="Password"
+							type="password"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+						/>
+					</div>
+					<div className="signup-input-container">
+						<InputWithLabel
+							label="Password Again*"
+							placeholder="Password"
+							type="password"
+							value={passwordAgain}
+							onChange={(e) => setPasswordAgain(e.target.value)}
+						/>
+					</div>
 					<div className="h-[30px]" />
-					<InputWithLabel
-						label="Name"
-						placeholder="Name"
-						value={name}
-						onChange={(e) => setName(e.target.value)}
-					/>
+					<div className="signup-input-container">
+						<InputWithLabel
+							label="Name"
+							placeholder="Name"
+							value={name}
+							onChange={(e) => setName(e.target.value)}
+						/>
+					</div>
 					<div className="h-[10px]" />
-					<div className="button-container">
+					<div className="signup-button-container">
 						<RectButton
 							type="highlight"
 							text="회원가입"

@@ -5,7 +5,7 @@ import '@/presentation/assets/style/Global.css'
 const RectButton = ({ type = 'default', text, onClick, disabled }) => {
 	return (
 		<button
-			className={`button-${type}`}
+			className={`rect-button rect-button-${type}`}
 			onClick={onClick}
 			disabled={disabled}
 		>

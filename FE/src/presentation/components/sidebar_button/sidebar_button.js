@@ -5,14 +5,20 @@ import './sidebar_button.css'
 const SidebarButton = ({ logotype, text, notactive, onClick }) => {
 	return (
 		<div
-			className={`logo-box ${notactive ? 'notactive' : ''}`}
+			className={`sidebar-logo-box ${
+				notactive ? 'sidebar-notactive' : ''
+			}`}
 			onClick={onClick}
 			style={{ cursor: 'pointer' }}
 		>
-			<div className="logo-container">
-				<Icon type={logotype} className="logo" />
+			<div className="sidebar-logo-container">
+				<Icon type={logotype} className="sidebar-logo" />
 			</div>
-			<div className={`logo-text-container ${notactive ? 'text-notactive' : ''}`}>
+			<div
+				className={`sidebar-logo-text-container ${
+					notactive ? 'sidebar-text-notactive' : ''
+				}`}
+			>
 				{text}
 			</div>
 		</div>

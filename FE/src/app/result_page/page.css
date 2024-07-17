@@ -1,8 +1,8 @@
 @import url('@/presentation/assets/style/Global.css');
 
-body,
-html,
-main {
+.resultpg-body,
+.resultpg-html,
+.resultpg-main {
 	margin: 0;
 	padding: 0;
 	width: 100%;
@@ -10,14 +10,14 @@ main {
 	background-color: white;
 }
 
-.header-text-container {
+.resultpg-header-text-container {
 	font-family: 'PretendardVariable', sans-serif;
 	font-size: 190%;
 	margin-top: 16px;
 	color: black;
 }
 
-.subheader-text-container {
+.resultpg-subheader-text-container {
 	position: relative;
 	left: calc(anchor(right) + 20px);
 	margin-top: 16px;
@@ -26,10 +26,9 @@ main {
 	font-family: 'Pretendard', sans-serif;
 	font-size: 20px;
 	font-weight: 600;
-	/* line-height: normal; */
 }
 
-.right-content-box {
+.resultpg-right-content-box {
 	position: absolute;
 	right: 0;
 	width: calc(100vw - 300px);
@@ -38,7 +37,8 @@ main {
 	flex-direction: column;
 	align-items: center;
 }
-.right-content-container {
+
+.resultpg-right-content-container {
 	width: 80%;
 	display: flex;
 	flex-direction: column;
@@ -46,7 +46,7 @@ main {
 	justify-content: flex-start;
 }
 
-.button-container {
+.resultpg-button-container {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
@@ -54,7 +54,7 @@ main {
 	min-width: 300px;
 }
 
-.back-button {
+.resultpg-back-button {
 	font-family: 'PretendardVariable', sans-serif;
 	font-size: 190%;
 	margin-top: 16px;

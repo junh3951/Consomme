@@ -2,7 +2,7 @@
 
 body,
 html,
-main {
+generatepg-main {
 	margin: 0;
 	padding: 0;
 	width: 100%;
@@ -10,7 +10,7 @@ main {
 	background-color: white;
 }
 
-.back-button {
+.generatepg-back-button {
 	font-family: 'PretendardVariable', sans-serif;
 	font-size: 190%;
 	margin-top: 16px;
@@ -21,7 +21,7 @@ main {
 	margin-left: -50px;
 }
 
-.subheader-text-container {
+.generatepg-subheader-text-container {
 	position: relative;
 	left: calc(anchor(right) + 20px);
 	font-family: 'PretendardVariable', sans-serif;
@@ -31,8 +31,7 @@ main {
 	color: #191919;
 }
 
-
-.right-content-box {
+.generatepg-right-content-box {
 	position: absolute;
 	right: 0;
 	width: calc(100vw - 300px);
@@ -41,7 +40,8 @@ main {
 	flex-direction: column;
 	align-items: center;
 }
-.right-content-container {
+
+.generatepg-right-content-container {
 	width: 80%;
 	display: flex;
 	flex-direction: column;
@@ -49,18 +49,18 @@ main {
 	justify-content: flex-start;
 }
 
-.content-grid {
+.generatepg-content-grid {
 	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 	gap: 40px;
 	display: flex; /* 그리드 대신 플렉스로 변경하여 요소들이 한 줄로 배열되게 함 */
-    flex-wrap: nowrap; /* 요소들이 줄 바꿈 없이 한 줄로 유지 */
-    overflow-x: auto; /* 수평 스크롤바 활성화 */
+	flex-wrap: nowrap; /* 요소들이 줄 바꿈 없이 한 줄로 유지 */
+	overflow-x: auto; /* 수평 스크롤바 활성화 */
 }
 
-.content-box {
+.generatepg-content-box {
 	flex: 0 0 450px;
-	background-color: #F8F8F8;
-	border: 2px solid #E6E6E6;
+	background-color: #f8f8f8;
+	border: 2px solid #e6e6e6;
 	border-radius: 10px;
 	padding: 20px;
 	display: flex;
@@ -71,54 +71,54 @@ main {
 	transition: all 0.3s ease;
 }
 
-.content-box-number {
-    color: #191919;
+.generatepg-content-box-number {
+	color: #191919;
 	font-size: 130%;
 	position: relative;
 	top: -60px;
 	left: -20px;
 }
 
-.content-box:hover {
+.generatepg-content-box:hover {
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-  
-.content-box-label {
+
+.generatepg-content-box-label {
 	font-size: 16px;
 	color: #606060;
 	margin-bottom: 10px;
 }
-  
-.content-title-text {
+
+.generatepg-content-title-text {
 	font-size: 18px;
 	font-weight: 700;
 	margin-bottom: 10px;
 	color: #191919;
 }
-  
-.content-box-text {
+
+.generatepg-content-box-text {
 	font-size: 18px;
 	color: #606060;
 	font-weight: 600;
 }
 
-.content-box.selected {
-    border: 3px solid #000;  /* 선택된 항목의 경계선을 두껍게 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* 선택된 항목의 그림자 강조 */
+.generatepg-content-box.selected {
+	border: 3px solid #000; /* 선택된 항목의 경계선을 두껍게 */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 선택된 항목의 그림자 강조 */
 }
 
-.content-box.unselected {
-    opacity: 0.5;  /* 선택되지 않은 항목을 흐리게 */
+.generatepg-content-box.unselected {
+	opacity: 0.5; /* 선택되지 않은 항목을 흐리게 */
 }
-  
-.date {
+
+.generatepg-date {
 	font-size: 16px;
-	color: #AEAEAE;
+	color: #aeaeae;
 	text-align: right;
 	margin-top: 20px;
 }
 
-.last-button-container {
+.generatepg-last-button-container {
 	display: flex;
 	flex-direction: row;
 	align-items: flex-start;
@@ -126,7 +126,7 @@ main {
 	width: 100%;
 }
 
-.last-button {
+.generatepg-last-button {
 	border: none;
 	cursor: pointer;
 	outline: none;
@@ -142,25 +142,25 @@ main {
 	border-radius: 10px;
 	font-size: 20px;
 	font-weight: 600;
-	background: #716AE7;
-    background: color(display-p3 0.441 0.415 0.905);
+	background: #716ae7;
+	background: color(display-p3 0.441 0.415 0.905);
 	color: #fff; /* Adjust the text color as needed */
 }
 
-.last-button:active {
+.generatepg-last-button:active {
 	transform: scale(0.95);
 	user-select: none;
 	transition: transform 0.1s;
 }
 
-.input-container {
+.generatepg-input-container {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	margin: 4px; /* 필요한 경우 조정 */
 }
 
-.input-field {
+.generatepg-input-field {
 	width: 100%; /* 필요에 따라 조정 가능 */
 	height: 50px;
 	flex-shrink: 0;
@@ -174,7 +174,7 @@ main {
 	color: #191919;
 }
 
-.input-field::placeholder {
-	color: #B0B0B0;
-	color: color(display-p3 0.690 0.690 0.690);
+.generatepg-input-field::placeholder {
+	color: #b0b0b0;
+	color: color(display-p3 0.69 0.69 0.69);
 }

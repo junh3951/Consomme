@@ -1,8 +1,8 @@
 @import url('@/presentation/assets/style/Global.css');
 
-body,
-html,
-main {
+.main-body,
+.main-html,
+.main-main {
 	margin: 0;
 	padding: 0;
 	width: 100%;
@@ -10,42 +10,42 @@ main {
 	background-color: white;
 }
 
-.flex {
+.main-flex {
 	display: flex;
 }
 
-.min-h-screen {
+.main-min-h-screen {
 	min-height: 100vh;
 }
 
-.flex-col {
+.main-flex-col {
 	flex-direction: column;
 }
 
-.items-center {
+.main-items-center {
 	align-items: center;
 }
 
-.justify-center {
+.main-justify-center {
 	justify-content: center;
 }
 
-.bg-white {
+.main-bg-white {
 	background-color: white;
 }
 
-.left-sidebar {
+.main-left-sidebar {
 	position: absolute;
 	left: 0;
 	width: 40%;
 	min-width: 400px;
 	height: 100%;
-	background: #F2F2FF;
+	background: #f2f2ff;
 	background: color(display-p3 0.9490196 0.9490196 1);
 	overflow: hidden;
 }
 
-.sidebar-pattern {
+.main-sidebar-pattern {
 	position: absolute;
 	right: -230px;
 	top: -100px;
@@ -60,22 +60,24 @@ main {
 	stroke: color(display-p3 1 1 1);
 }
 
-.logo-ribbon-container {
+.main-logo-ribbon-container {
 	width: 100%;
 	display: flex;
 	align-items: flex-end;
 	justify-content: flex-end;
 }
-.greeting-text {
+
+.main-greeting-text {
 	width: 80%;
 	font-family: 'PretendardVariable', sans-serif;
 	font-size: clamp(16px, 2vw, 350%);
-	color: #2F2F2F;
+	color: #2f2f2f;
 	position: absolute;
 	top: 8%;
 	left: 8%;
 }
-.right-content-box {
+
+.main-right-content-box {
 	position: absolute;
 	right: 0;
 	width: 60%;
@@ -83,7 +85,8 @@ main {
 	height: 100%;
 	background: #fff;
 }
-.right-content-container {
+
+.main-right-content-container {
 	position: absolute;
 	width: 80%;
 	height: 100%;
@@ -93,48 +96,56 @@ main {
 	flex-direction: column;
 	align-items: center;
 }
-.logo-container {
+
+.main-logo-container {
 	width: 52px;
 	height: 52px;
 	flex-shrink: 0;
 	align-items: flex-end;
 	justify-content: flex-start;
 }
-.text-container {
+
+.main-text-container {
 	font-family: 'PretendardVariable', sans-serif;
 	font-size: 150%;
 	margin-top: 16px;
 	color: #191919;
 }
-.input-container {
+
+.main-input-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 50%;
+	height: 60px;
+	min-width: 300px;
+	margin: 10px 0;
+}
+
+.main-button-container {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	width: 50%;
 	min-width: 300px;
-	margin: 20px 0;
 }
 
-.button-container {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	width: 50%;
-	min-width: 300px;
-}
-
-.forgot-password-text {
+.main-forgot-password-text {
 	color: #656565;
 	color: color(display-p3 0.3961 0.3961 0.3961);
-	text-align: right;
+	text-align: center;
 	width: 50%;
-	font-size: 15px;
+	margin-top: 10px;
+	height: 5px;
+	min-width: 300px;
+	font-size: 12px;
 	font-weight: 500;
+	color: rgb(73, 73, 198);
 }
 
-.or-text {
+.main-or-text {
 	color: #656565;
 	color: color(display-p3 0.3961 0.3961 0.3961);
 	font-size: 16px;
-	font-weight: 500;
+	font-weight: 300;
 }

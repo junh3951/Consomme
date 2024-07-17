@@ -43,13 +43,13 @@ function DetailContent() {
 	return (
 		<>
 			<div className="h-[83px]" />
-			<div className="header-text-container">
+			<div className="detailpg-header-text-container">
 				콘텐츠 영상 소재 생성하기
 			</div>
 			<div className="h-[23px]" />
 			<DefinedField label="소재 제목" value={title} />
 			<div className="h-[23px]" />
-			<div className="subheader-text-container">참고정보</div>
+			<div className="detailpg-subheader-text-container">참고정보</div>
 			<div className="h-[10px]" />
 			<ReferenceField references={references} />
 			<div className="h-[23px]" />
@@ -67,12 +67,12 @@ function DetailPage() {
 
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-center bg-white">
-			<div className="right-content-box">
-				<div className="right-content-container">
+			<div className="detailpg-right-content-box">
+				<div className="detailpg-right-content-container">
 					<Suspense fallback={<div>Loading...</div>}>
 						<DetailContent />
 					</Suspense>
-					<div className="button-container">
+					<div className="detailpg-button-container">
 						<RectButton
 							type="default"
 							text="보관함으로 돌아가기"

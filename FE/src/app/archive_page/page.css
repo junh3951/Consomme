@@ -10,38 +10,14 @@ main {
 	background-color: white;
 }
 
-.flex {
-	display: flex;
-}
-
-.min-h-screen {
-	min-height: 100vh;
-}
-
-.flex-col {
-	flex-direction: column;
-}
-
-.items-center {
-	align-items: center;
-}
-
-.justify-center {
-	justify-content: center;
-}
-
-.bg-white {
-	background-color: white;
-}
-
-.header-text-container {
+.archivepg-header-text-container {
 	font-family: 'PretendardVariable', sans-serif;
 	font-size: 190%;
 	margin-top: 16px;
 	color: #191919;
 }
 
-.subheader-text-container {
+.archivepg-subheader-text-container {
 	position: relative;
 	left: calc(anchor(right) + 20px);
 	font-family: 'PretendardVariable', sans-serif;
@@ -50,7 +26,7 @@ main {
 	color: #191919;
 }
 
-.right-content-box {
+.archivepg-right-content-box {
 	position: absolute;
 	right: 0;
 	width: calc(100vw - 300px);
@@ -61,7 +37,7 @@ main {
 	min-width: 500px;
 }
 
-.right-content-container {
+.archivepg-right-content-container {
 	width: 80%;
 	display: flex;
 	flex-direction: column;
@@ -69,20 +45,20 @@ main {
 	justify-content: flex-start;
 }
 
-.content-grid-wrapper {
+.archivepg-content-grid-wrapper {
 	width: 100%;
 	overflow-x: auto;
 }
 
-.content-grid {
+.archivepg-content-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 	gap: 20px;
 }
 
-.content-box {
-	background-color: #F8F8F8;
-	border: 2px solid #E6E6E6;
+.archivepg-content-box {
+	background-color: #f8f8f8;
+	border: 2px solid #e6e6e6;
 	border-radius: 10px;
 	padding: 20px;
 	display: flex;
@@ -93,39 +69,39 @@ main {
 	min-width: 300px;
 }
 
-.content-box:hover {
+.archivepg-content-box:hover {
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.content-box-label {
+.archivepg-content-box-label {
 	font-size: 16px;
 	color: #606060;
 	margin-bottom: 10px;
 }
 
-.content-title-text {
+.archivepg-content-title-text {
 	font-size: 18px;
 	font-weight: 700;
 	margin-bottom: 10px;
 	color: #191919;
 }
 
-.content-box-text {
+.archivepg-content-box-text {
 	font-size: 18px;
 	color: #606060;
 	font-weight: 600;
 }
 
-.date {
+.archivepg-date {
 	font-size: 16px;
-	color: #AEAEAE;
+	color: #aeaeae;
 	text-align: right;
 	margin-top: 20px;
 }
 
 /* Small screens */
 @media (max-width: 800px) {
-	.content-grid {
+	.archivepg-content-grid {
 		display: flex;
 		overflow-x: auto;
 		gap: 10px;

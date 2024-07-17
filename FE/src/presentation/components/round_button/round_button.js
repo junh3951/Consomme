@@ -5,7 +5,7 @@ import '@/presentation/assets/style/Global.css'
 const RoundButton = ({ type = 'default', text, onClick, disabled }) => {
 	return (
 		<button
-			className={`button-${type}`}
+			className={`round-button round-button-${type}`}
 			onClick={onClick}
 			disabled={disabled}
 		>

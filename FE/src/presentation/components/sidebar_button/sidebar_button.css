@@ -1,12 +1,12 @@
 @import url('../../assets/style/Global.css');
 
-.logo-box {
+.sidebar-logo-box {
 	display: flex;
 	width: 65%;
 	flex-direction: row;
 }
 
-.logo-container {
+.sidebar-logo-container {
 	width: 52px;
 	height: 52px;
 	flex-shrink: 0;
@@ -14,23 +14,23 @@
 	justify-content: flex-start;
 }
 
-.logo {
+.sidebar-logo {
 	width: 60%;
 	height: 60%;
 	object-fit: contain; /* Ensures the logo maintains its aspect ratio */
 }
 
-.logo-text-container {
+.sidebar-logo-text-container {
 	position: relative;
 	left: -5px;
 	top: -11px;
 	font-family: 'PretendardVariable', sans-serif;
 	font-size: 100%;
 	margin-top: 16px;
-	color: #665EF9;
+	color: #665ef9;
 }
 
-.logo-box.notactive .logo,
-.logo-box.notactive .logo-text-container {
+.sidebar-logo-box.sidebar-notactive .sidebar-logo,
+.sidebar-logo-box.sidebar-notactive .sidebar-logo-text-container {
 	opacity: 0.5;
 }

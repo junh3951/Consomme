@@ -34,7 +34,7 @@ function DetailContent() {
 		<>
 			<div className="h-[83px]" />
 			<button
-				className="back-button"
+				className="resultpg-back-button"
 				onClick={() => router.push(`/recommned_page`)}
 			>
 				← 콘텐츠 영상 소재 생성하기
@@ -42,7 +42,7 @@ function DetailContent() {
 			<div className="h-[23px]" />
 			<DefinedField label="소재 제목" value={title} />
 			<div className="h-[23px]" />
-			<div className="subheader-text-container">참고정보</div>
+			<div className="resultpg-subheader-text-container">참고정보</div>
 			<div className="h-[10px]" />
 			<ReferenceField references={references} />
 			<div className="h-[23px]" />
@@ -59,13 +59,13 @@ function DetailPage() {
 	const router = useRouter()
 
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-center bg-white">
-			<div className="right-content-box">
-				<div className="right-content-container">
+		<main className="resultpg-flex resultpg-min-h-screen resultpg-flex-col resultpg-items-center resultpg-justify-center resultpg-bg-white">
+			<div className="resultpg-right-content-box">
+				<div className="resultpg-right-content-container">
 					<Suspense fallback={<div>Loading...</div>}>
 						<DetailContent />
 					</Suspense>
-					<div className="button-container">
+					<div className="resultpg-button-container">
 						<RectButton
 							type="highlight"
 							text="보관함으로 돌아가기"
