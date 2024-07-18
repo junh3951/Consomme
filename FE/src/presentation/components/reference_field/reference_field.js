@@ -2,6 +2,7 @@ import React from 'react'
 import './reference_field.css'
 
 const getYouTubeVideoID = (url) => {
+	if (typeof url !== 'string') return null
 	const regExp =
 		/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
 	const match = url.match(regExp)

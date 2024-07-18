@@ -55,6 +55,7 @@ function App() {
 								title: title,
 								reason: reason,
 								date: today,
+								references: [],
 							})
 						}
 					}
@@ -92,19 +93,61 @@ function App() {
 	const handleButtonClick = () => {
 		if (selectedContent !== null) {
 			const selectedContentData = contents[selectedContent]
-			let index = 0
-			while (localStorage.getItem(`contentHistory${index}`)) {
-				index++
+
+			// Fetch references
+			const videoIdsKeyword = JSON.parse(
+				localStorage.getItem('video_ids_keyword') || '[]',
+			)
+			const videoIdsCategory = JSON.parse(
+				localStorage.getItem('video_ids_category') || '[]',
+			)
+			const allVideoIds = [...videoIdsKeyword, ...videoIdsCategory]
+			console.log('All video ids:', allVideoIds)
+
+			const shuffled = allVideoIds.sort(() => 0.5 - Math.random())
+			console.log('Shuffled video ids:', shuffled)
+
+			const fetchVideoDetails = async (videoId) => {
+				const response = await fetch(
+					`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${process.env.NEXT_PUBLIC_YOUTUBE_API_KEY}`,
+				)
+				if (!response.ok) {
+					throw new Error('Failed to fetch video details')
+				}
+				const data = await response.json()
+				return data.items[0].snippet
 			}
-			localStorage.setItem(
-				`contentHistory${index}`,
-				JSON.stringify(selectedContentData),
-			)
-			console.log(
-				`Selected content saved as contentHistory${index}:`,
-				selectedContentData,
-			)
-			router.push(`/result_page?title=${selectedContentData.title}`)
+
+			const getVideoReferences = async () => {
+				const newReferences = []
+				for (const videoId of shuffled) {
+					if (newReferences.length >= 3) break
+					try {
+						const videoDetails = await fetchVideoDetails(videoId)
+						newReferences.push({
+							link: `https://www.youtube.com/watch?v=${videoId}`,
+							title: videoDetails.title,
+							channel: videoDetails.channelTitle,
+						})
+					} catch (error) {
+						console.error('Error fetching video details:', error)
+					}
+				}
+				return newReferences
+			}
+
+			getVideoReferences().then((references) => {
+				selectedContentData.references = references
+				localStorage.setItem(
+					'selectedContent',
+					JSON.stringify(selectedContentData),
+				)
+				console.log(
+					'Selected content with references saved to localStorage:',
+					selectedContentData,
+				)
+				router.push(`/result_page?title=${selectedContentData.title}`)
+			})
 		}
 	}
 
@@ -141,11 +184,13 @@ function App() {
 				title: responseData.enhanced_recommendation
 					.split('\n')[0]
 					.replace('### ', '')
+					.split(':')[1]
 					.trim(),
 				reason: responseData.enhanced_recommendation
 					.split('**소재 추천 이유:**')[1]
 					.trim(),
 				date: new Date().toISOString().split('T')[0],
+				references: selectedTrending.references,
 			}
 
 			const newContents = [...contents]

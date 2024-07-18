@@ -11,8 +11,12 @@ import Sidebar from '@/presentation/components/sidebar/sidebar'
 function DetailContent() {
 	const router = useRouter()
 	const [previousPage, setPreviousPage] = useState('')
-	const [content, setContent] = useState({ title: '', reason: '', date: '' })
-	const [references, setReferences] = useState([])
+	const [content, setContent] = useState({
+		title: '',
+		reason: '',
+		date: '',
+		references: [],
+	})
 
 	useEffect(() => {
 		const prevPage = localStorage.getItem('previousPage')
@@ -28,53 +32,6 @@ function DetailContent() {
 			const parsedContent = JSON.parse(selectedContent)
 			setContent(parsedContent)
 		}
-	}, [])
-
-	useEffect(() => {
-		// 유튜브 비디오 정보를 가져오기 위한 로직
-		const videoIdsKeyword = JSON.parse(
-			localStorage.getItem('video_ids_keyword') || '[]',
-		)
-		const videoIdsCategory = JSON.parse(
-			localStorage.getItem('video_ids_category') || '[]',
-		)
-		const allVideoIds = [...videoIdsKeyword, ...videoIdsCategory]
-		console.log('All video ids:', allVideoIds)
-
-		const shuffled = allVideoIds.sort(() => 0.5 - Math.random())
-		console.log('Shuffled video ids:', shuffled)
-
-		const fetchVideoDetails = async (videoId) => {
-			const response = await fetch(
-				`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${process.env.NEXT_PUBLIC_YOUTUBE_API_KEY}`,
-			)
-			if (!response.ok) {
-				throw new Error('Failed to fetch video details')
-			}
-			const data = await response.json()
-			return data.items[0].snippet
-		}
-
-		const getVideoReferences = async () => {
-			const newReferences = []
-			for (const videoId of shuffled) {
-				if (newReferences.length >= 3) break
-				try {
-					const videoDetails = await fetchVideoDetails(videoId)
-					newReferences.push({
-						link: `https://www.youtube.com/watch?v=${videoId}`,
-						title: videoDetails.title,
-						channel: videoDetails.channelTitle,
-					})
-				} catch (error) {
-					console.error('Error fetching video details:', error)
-				}
-			}
-			setReferences(newReferences)
-			console.log('Final references:', newReferences)
-		}
-
-		getVideoReferences()
 	}, [])
 
 	useEffect(() => {
@@ -96,7 +53,7 @@ function DetailContent() {
 			</div>
 			<div className="resultpg-subheader-text-container">참고정보</div>
 			<div className="h-[10px]" />
-			<ReferenceField references={references} />
+			<ReferenceField references={content.references} />
 			<div className="h-[10px]" />
 			<div className="resultpg-subheader-text-container">
 				소재 추천 이유
@@ -127,6 +84,16 @@ function DetailPage() {
 		console.log('Previous page:', previousPage)
 	}, [previousPage])
 
+	const saveContentToHistory = () => {
+		const content = JSON.parse(localStorage.getItem('selectedContent'))
+		let index = 0
+		while (localStorage.getItem(`contentHistory${index}`)) {
+			index++
+		}
+		localStorage.setItem(`contentHistory${index}`, JSON.stringify(content))
+		console.log(`Saved content to contentHistory${index}:`, content)
+	}
+
 	return (
 		<main className="resultpg-flex resultpg-min-h-screen resultpg-flex-col resultpg-items-center resultpg-justify-center resultpg-bg-white">
 			<Sidebar />
@@ -149,18 +116,20 @@ function DetailPage() {
 									<RectButton
 										type="default"
 										text="보관함으로 이동하기"
-										onClick={() =>
+										onClick={() => {
+											saveContentToHistory()
 											router.push('/archive_page')
-										}
+										}}
 									/>
 								</div>
 								<div className="resultpg-button-container2">
 									<RectButton
 										type="highlight"
 										text="완료하기"
-										onClick={() =>
+										onClick={() => {
+											saveContentToHistory()
 											router.push('/recommned_page')
-										}
+										}}
 									/>
 								</div>
 							</div>
