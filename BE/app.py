@@ -136,46 +136,43 @@ def search_videos():
     search_keyword = data.get('search_keyword')
     category = data.get('category')
 
-    response_keyword = fetch_videos(search_keyword, 100)
-    response_category = fetch_videos(category, 100)
-
-    videos_keyword = []
-    videos_category = []
-
-    process_video_items(response_keyword, videos_keyword)
-    process_video_items(response_category, videos_category)
-
-    video_ids_keyword = [video['videoId'] for video in videos_keyword]
-    video_ids_category = [video['videoId'] for video in videos_category]
-
-    videos_response_keyword = fetch_video_details(video_ids_keyword)
-    videos_response_category = fetch_video_details(video_ids_category)
-
-    for video, video_info in zip(videos_keyword, videos_response_keyword):
-        video['channelTitle'] = video_info['snippet']['channelTitle']
-        video['videoId'] = video_info['id']
-        video['viewCount'] = video_info['statistics']['viewCount']
-
-    for video, video_info in zip(videos_category, videos_response_category):
-        video['channelTitle'] = video_info['snippet']['channelTitle']
-        video['videoId'] = video_info['id']
-        video['viewCount'] = video_info['statistics']['viewCount']
-
-    df_keyword = pd.DataFrame(videos_keyword)
-    df_category = pd.DataFrame(videos_category)
-    df_keyword = df_keyword[['title', 'description', 'channelTitle', 'videoId', 'viewCount']]
-    df_category = df_category[['title', 'description', 'channelTitle', 'videoId', 'viewCount']]
-
-    df_keyword['viewCount'] = df_keyword['viewCount'].astype(int)
-    df_category['viewCount'] = df_category['viewCount'].astype(int)
-
     filename_keyword = sanitize_filename(search_keyword) + '_youtube_videos.csv'
     filename_category = sanitize_filename(category) + '_youtube_videos.csv'
 
-    # 파일이 존재하지 않을 때만 CSV 파일 생성
-    if not os.path.exists(filename_keyword):
+    if os.path.exists(filename_keyword):
+        df_keyword = pd.read_csv(filename_keyword)
+        video_ids_keyword = df_keyword['videoId'].tolist()
+    else:
+        response_keyword = fetch_videos(search_keyword, 100)
+        videos_keyword = []
+        process_video_items(response_keyword, videos_keyword)
+        video_ids_keyword = [video['videoId'] for video in videos_keyword]
+        videos_response_keyword = fetch_video_details(video_ids_keyword)
+        for video, video_info in zip(videos_keyword, videos_response_keyword):
+            video['channelTitle'] = video_info['snippet']['channelTitle']
+            video['videoId'] = video_info['id']
+            video['viewCount'] = video_info['statistics']['viewCount']
+        df_keyword = pd.DataFrame(videos_keyword)
+        df_keyword = df_keyword[['title', 'description', 'channelTitle', 'videoId', 'viewCount']]
+        df_keyword['viewCount'] = df_keyword['viewCount'].astype(int)
         df_keyword.to_csv(filename_keyword, index=False, encoding='utf-8-sig')
-    if not os.path.exists(filename_category):
+
+    if os.path.exists(filename_category):
+        df_category = pd.read_csv(filename_category)
+        video_ids_category = df_category['videoId'].tolist()
+    else:
+        response_category = fetch_videos(category, 100)
+        videos_category = []
+        process_video_items(response_category, videos_category)
+        video_ids_category = [video['videoId'] for video in videos_category]
+        videos_response_category = fetch_video_details(video_ids_category)
+        for video, video_info in zip(videos_category, videos_response_category):
+            video['channelTitle'] = video_info['snippet']['channelTitle']
+            video['videoId'] = video_info['id']
+            video['viewCount'] = video_info['statistics']['viewCount']
+        df_category = pd.DataFrame(videos_category)
+        df_category = df_category[['title', 'description', 'channelTitle', 'videoId', 'viewCount']]
+        df_category['viewCount'] = df_category['viewCount'].astype(int)
         df_category.to_csv(filename_category, index=False, encoding='utf-8-sig')
 
     titles_category = df_category['title'].tolist()
