@@ -98,6 +98,24 @@ function App() {
 				JSON.stringify(searchResponseData),
 			)
 
+			// video_ids_keyword와 video_ids_category를 localStorage에 저장
+			localStorage.setItem(
+				'video_ids_keyword',
+				JSON.stringify(searchResponseData.video_ids_keyword),
+			)
+			localStorage.setItem(
+				'video_ids_category',
+				JSON.stringify(searchResponseData.video_ids_category),
+			)
+			console.log(
+				'video_ids_keyword:',
+				searchResponseData.video_ids_keyword,
+			)
+			console.log(
+				'video_ids_category:',
+				searchResponseData.video_ids_category,
+			)
+
 			const reversedKeywords = searchResponseData.top_keywords_category
 				.slice()
 				.reverse()

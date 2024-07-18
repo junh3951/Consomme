@@ -24,23 +24,30 @@ function App() {
 			localStorage.setItem('previousPage', window.location.href)
 		}, 0)
 
-		// JSON 데이터 파싱하여 contents 배열 업데이트
 		const generatedContentData = localStorage.getItem(
 			'generatedContentData',
 		)
 		if (generatedContentData) {
 			console.log('generatedContentData:', generatedContentData)
 			const parsedData = JSON.parse(generatedContentData)
-			const today = new Date().toISOString().split('T')[0] // 오늘 날짜
+			const today = new Date().toISOString().split('T')[0]
 
 			const newContents = []
 
 			const parseContent = (trendingData) => {
 				if (trendingData) {
-					const parts = trendingData.split('\n- **소재 추천 이유**:')
+					const parts = trendingData.split('**소재 추천 이유:**')
 					if (parts.length === 2) {
-						const title = parts[0]?.replace('### ', '').trim()
+						let titlePart = parts[0]?.replace('### ', '').trim()
 						const reason = parts[1]?.trim()
+
+						// **소재:** 뒤부터 제목으로 설정
+						const titleIndex = titlePart.indexOf('**소재:**')
+						let title = titlePart
+						if (titleIndex !== -1) {
+							title = titlePart.substring(titleIndex + 8).trim()
+						}
+
 						console.log('Parsed title:', title)
 						console.log('Parsed reason:', reason)
 						if (title && reason) {
@@ -76,17 +83,28 @@ function App() {
 	}
 
 	const handleContentClick = (index) => {
-		setSelectedContent(index) // 선택된 컨텐츠의 index를 설정
+		setSelectedContent(index)
 		const selectedContent = contents[index]
 		localStorage.setItem('selectedContent', JSON.stringify(selectedContent))
 		console.log('Selected content saved to localStorage:', selectedContent)
 	}
 
 	const handleButtonClick = () => {
-		const contentTitle = contents[selectedContent]?.title
-		if (contentTitle) {
-			const params = new URLSearchParams({ contentTitle }).toString()
-			router.push(`/result_page?${params}`)
+		if (selectedContent !== null) {
+			const selectedContentData = contents[selectedContent]
+			let index = 0
+			while (localStorage.getItem(`contentHistory${index}`)) {
+				index++
+			}
+			localStorage.setItem(
+				`contentHistory${index}`,
+				JSON.stringify(selectedContentData),
+			)
+			console.log(
+				`Selected content saved as contentHistory${index}:`,
+				selectedContentData,
+			)
+			router.push(`/result_page?title=${selectedContentData.title}`)
 		}
 	}
 
