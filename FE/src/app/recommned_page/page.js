@@ -30,33 +30,15 @@ const keywords = [
 ]
 
 function App() {
-	const trendsByCategory = {
-		스포츠: [
-			'축구',
-			'야구',
-			'농구',
-			'테니스',
-			'배드민턴',
-			'골프',
-			'수영',
-			'복싱',
-		],
-		'뷰티 / 패션': [
-			'스킨케어',
-			'메이크업',
-			'헤어스타일',
-			'패션 트렌드',
-			'액세서리',
-			'네일 아트',
-			'향수',
-			'바디케어',
-		],
-		엔터테인먼트: ['1', '2', '3', '4', '5', '6', '7', '8'],
-		음식: ['1', '2', '3', '4', '5', '6', '7', '8'],
-		게임: ['1', '2', '3', '4', '5', '6', '7', '8'],
-		'여행 / 이벤트': ['1', '2', '3', '4', '5', '6', '7', '8'],
-		'애완동물 / 동물': ['1', '2', '3', '4', '5', '6', '7', '8'],
-	}
+	const [trendsByCategory, setTrendsByCategory] = useState({
+		스포츠: ['', '', '', '', '', '', '', ''],
+		'뷰티 / 패션': ['', '', '', '', '', '', '', ''],
+		엔터테인먼트: ['', '', '', '', '', '', '', ''],
+		음식: ['', '', '', '', '', '', '', ''],
+		게임: ['', '', '', '', '', '', '', ''],
+		'여행 / 이벤트': ['', '', '', '', '', '', '', ''],
+		'애완동물 / 동물': ['', '', '', '', '', '', '', ''],
+	})
 	const [inputValue, setInputValue] = useState('')
 	const [selectedCategory, setSelectedCategory] = useState(null)
 	const [selectedTrend, setSelectedTrend] = useState(null)
@@ -86,7 +68,7 @@ function App() {
 
 		const data = {
 			search_keyword: inputValue,
-			category: 'sports',
+			category: category,
 		}
 
 		console.log('Sending search request:', data)
@@ -110,10 +92,21 @@ function App() {
 
 			const searchResponseData = await searchResponse.json()
 			console.log('Received search response:', searchResponseData)
+
 			localStorage.setItem(
 				'searchResponseData',
 				JSON.stringify(searchResponseData),
 			)
+
+			const reversedKeywords = searchResponseData.top_keywords_category
+				.slice()
+				.reverse()
+
+			const updatedTrendsByCategory = {
+				...trendsByCategory,
+				[category]: reversedKeywords,
+			}
+			setTrendsByCategory(updatedTrendsByCategory)
 		} catch (error) {
 			console.error('Error during search request:', error)
 			alert('검색 요청 처리 중 오류가 발생했습니다.')
@@ -124,7 +117,7 @@ function App() {
 		setSelectedTrend(trend)
 	}
 
-	const handleGenerateClick = async () => {
+	const handleGenerateClick = async (selectedCategory) => {
 		const data = {
 			search_keyword: inputValue,
 			category: selectedCategory,

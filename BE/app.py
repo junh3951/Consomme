@@ -188,7 +188,7 @@ def search_videos():
         if word not in seen and not contains_special_characters(word) and len(word) > 1:
             seen.add(word)
             final_keywords.append(word)
-        if len(final_keywords) == 7:
+        if len(final_keywords) == 8:
             break
 
     return jsonify({
