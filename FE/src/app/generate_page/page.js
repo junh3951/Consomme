@@ -13,6 +13,7 @@ function App() {
 	const [contents, setContents] = useState([])
 	const [selectedContent, setSelectedContent] = useState(null)
 	const [inputValue, setInputValue] = useState('')
+	const [detailValue, setDetailValue] = useState('')
 
 	useEffect(() => {
 		const prevPage = localStorage.getItem('previousPage')
@@ -70,8 +71,15 @@ function App() {
 		setInputValue(e.target.value)
 	}
 
+	const handleDetailChange = (e) => {
+		setDetailValue(e.target.value)
+	}
+
 	const handleContentClick = (index) => {
 		setSelectedContent(index) // 선택된 컨텐츠의 index를 설정
+		const selectedContent = contents[index]
+		localStorage.setItem('selectedContent', JSON.stringify(selectedContent))
+		console.log('Selected content saved to localStorage:', selectedContent)
 	}
 
 	const handleButtonClick = () => {
@@ -79,6 +87,63 @@ function App() {
 		if (contentTitle) {
 			const params = new URLSearchParams({ contentTitle }).toString()
 			router.push(`/result_page?${params}`)
+		}
+	}
+
+	const handleRegenerateClick = async () => {
+		if (selectedContent === null || !detailValue) return
+
+		const selectedTrending = contents[selectedContent]
+		const requestData = {
+			selected_trending: `### ${selectedTrending.title}\n**소재 추천 이유:**\n${selectedTrending.reason}`,
+			enhancement_instruction: detailValue,
+		}
+
+		console.log('Sending enhancement request:', requestData)
+
+		try {
+			const response = await fetch('http://34.16.144.210:3000/enhance', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(requestData),
+			})
+
+			console.log('Enhance response status:', response.status)
+			if (!response.ok) {
+				throw new Error('Enhance request failed')
+			}
+
+			const responseData = await response.json()
+			console.log('Received enhance response:', responseData)
+
+			const enhancedContent = {
+				...selectedTrending,
+				title: responseData.enhanced_recommendation
+					.split('\n')[0]
+					.replace('### ', '')
+					.trim(),
+				reason: responseData.enhanced_recommendation
+					.split('**소재 추천 이유:**')[1]
+					.trim(),
+				date: new Date().toISOString().split('T')[0],
+			}
+
+			const newContents = [...contents]
+			newContents[selectedContent] = enhancedContent
+			setContents(newContents)
+
+			localStorage.setItem(
+				'selectedContent',
+				JSON.stringify(enhancedContent),
+			)
+			console.log(
+				'Enhanced content saved to localStorage:',
+				enhancedContent,
+			)
+		} catch (error) {
+			console.error('Error during enhance request:', error)
 		}
 	}
 
@@ -140,23 +205,25 @@ function App() {
 						label=""
 						placeholder="ex) 한달살기하면서 인기 있을 생활 콘텐츠 요소도 트렌드에 기반해서 같이 추천해줘."
 						type="textarea"
-						onChange={handleInputChange}
+						onChange={handleDetailChange}
 					/>
 					<div className="h-[20px]" />
 					<div className="generatepg-last-button-container">
-						<div className="generatepg-last-button-container">
+						<div className="generatepg-last-button">
 							<RectButton
 								type="highlight"
 								text="이대로 완성하기"
 								onClick={handleButtonClick}
 							/>
 						</div>
-						<div className="generatepg-last-button-container">
+						<div className="generatepg-last-button">
 							<RectButton
 								type="default"
 								text="다시 생성하기"
-								onClick={() => router.push(`/result_page`)}
-								disabled={true}
+								onClick={handleRegenerateClick}
+								disabled={
+									selectedContent === null || !detailValue
+								}
 							/>
 						</div>
 					</div>
