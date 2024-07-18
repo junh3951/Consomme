@@ -1,7 +1,7 @@
 'use client'
 
 import './page.css'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Icon from '@/presentation/assets/image/icon'
 import RectButton from '@/presentation/components/rect_button/rect_button'
@@ -13,6 +13,17 @@ export default function SignUp() {
 	const [password, setPassword] = useState('')
 	const [passwordAgain, setPasswordAgain] = useState('')
 	const [name, setName] = useState('')
+	const [username, setUsername] = useState('')
+
+	useEffect(() => {
+		const storedEmail = localStorage.getItem('currentUserEmail')
+		if (storedEmail) {
+			const user = JSON.parse(localStorage.getItem(storedEmail))
+			if (user) {
+				setUsername(user.name)
+			}
+		}
+	}, [])
 
 	const handleSignUp = () => {
 		if (!email || !password || !passwordAgain || !name) {
@@ -33,6 +44,7 @@ export default function SignUp() {
 
 		const user = { email, password, name }
 		localStorage.setItem(email, JSON.stringify(user))
+		localStorage.setItem('currentUserEmail', email) // 현재 사용자를 저장
 		alert('회원가입이 완료되었습니다.')
 		router.push('/')
 	}

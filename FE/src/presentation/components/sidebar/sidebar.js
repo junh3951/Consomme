@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '@/presentation/assets/style/Global.css'
 import { useRouter } from 'next/navigation'
 import Icon from '@/presentation/assets/image/icon'
@@ -11,8 +11,17 @@ import Image from 'next/image'
 
 const Sidebar = ({ children, activePage }) => {
 	const router = useRouter()
+	const [userName, setUserName] = useState('')
 
-	const userName = '너구리' // 회원가입 시 입력된 이름으로
+	useEffect(() => {
+		const email = localStorage.getItem('currentUserEmail')
+		if (email) {
+			const user = JSON.parse(localStorage.getItem(email))
+			if (user && user.name) {
+				setUserName(user.name)
+			}
+		}
+	}, [])
 
 	return (
 		<div className="sidebar-left-sidebar">

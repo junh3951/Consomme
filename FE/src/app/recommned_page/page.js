@@ -68,7 +68,6 @@ function App() {
 		if (prevPage) {
 			setPreviousPage(prevPage)
 		}
-		// localStorage에 현재 페이지를 저장하는 작업을 나중에 수행
 		setTimeout(() => {
 			localStorage.setItem('previousPage', window.location.href)
 		}, 0)
@@ -77,16 +76,95 @@ function App() {
 	useEffect(() => {
 		console.log('Previous page:', previousPage)
 	}, [previousPage])
+
 	const handleInputChange = (e) => {
 		setInputValue(e.target.value)
 	}
 
-	const handleCategoryClick = (category) => {
+	const handleCategoryClick = async (category) => {
 		setSelectedCategory(category)
+
+		const data = {
+			search_keyword: inputValue,
+			category: 'sports',
+		}
+
+		console.log('Sending search request:', data)
+
+		try {
+			const searchResponse = await fetch(
+				'http://34.16.144.210:3000/search',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(data),
+					mode: 'no-cors',
+				},
+			)
+
+			console.log('Search response status:', searchResponse.status)
+			if (!searchResponse.ok) {
+				throw new Error('Search request failed')
+			}
+
+			const searchResponseData = await searchResponse.json()
+			console.log('Received search response:', searchResponseData)
+			localStorage.setItem(
+				'searchResponseData',
+				JSON.stringify(searchResponseData),
+			)
+		} catch (error) {
+			console.error('Error during search request:', error)
+			alert('검색 요청 처리 중 오류가 발생했습니다.')
+		}
 	}
 
 	const handleTrendClick = (trend) => {
 		setSelectedTrend(trend)
+	}
+
+	const handleGenerateClick = async () => {
+		const data = {
+			search_keyword: inputValue,
+			category: selectedCategory,
+			chosen_keyword: selectedTrend,
+		}
+
+		console.log('Sending generate request:', data)
+
+		try {
+			const generateResponse = await fetch(
+				'http://34.16.144.210:3000/generate',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(data),
+					mode: 'no-cors',
+				},
+			)
+
+			console.log('Generate response status:', generateResponse.status)
+			if (!generateResponse.ok) {
+				throw new Error('Generate request failed')
+			}
+
+			const generateResponseData = await generateResponse.json()
+			console.log('Received generate response:', generateResponseData)
+			localStorage.setItem(
+				'generatedContentData',
+				JSON.stringify(generateResponseData),
+			)
+			alert('요청이 성공적으로 처리되었습니다.')
+		} catch (error) {
+			console.error('Error during generate request:', error)
+			alert('요청 처리 중 오류가 발생했습니다.')
+		}
+
+		router.push(`/generate_page?category=${selectedCategory}`)
 	}
 
 	return (
@@ -203,11 +281,7 @@ function App() {
 					<RectButton
 						type="highlight"
 						text="생성하기"
-						onClick={() =>
-							router.push(
-								`/generate_page?category=${selectedCategory}`,
-							)
-						}
+						onClick={handleGenerateClick}
 						disabled={!selectedCategory}
 					/>
 				</div>
