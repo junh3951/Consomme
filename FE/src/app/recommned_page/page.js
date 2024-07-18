@@ -76,7 +76,7 @@ function App() {
 
 		try {
 			const searchResponse = await fetch(
-				'http://34.16.144.210:3000/search',
+				'https://34.16.144.210:3000/search',
 				{
 					method: 'POST',
 					headers: {
@@ -151,7 +151,7 @@ function App() {
 
 		try {
 			const generateResponse = await fetch(
-				'http://34.16.144.210:3000/generate',
+				'https://34.16.144.210:3000/generate',
 				{
 					method: 'POST',
 					headers: {
