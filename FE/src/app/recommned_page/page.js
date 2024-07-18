@@ -9,6 +9,7 @@ import RoundButton from '@/presentation/components/round_button/round_button'
 import InputWithLabel from '@/presentation/components/input_with_label/input_with_label'
 import SidebarButton from '@/presentation/components/sidebar_button/sidebar_button'
 import Sidebar from '@/presentation/components/sidebar/sidebar'
+import BubbleButtons from '@/presentation/components/bubble_buttons/bubble_buttons'
 
 const getCircleSize = (index) => {
 	const baseSize = 50 // 기본 크기
@@ -31,7 +32,7 @@ const keywords = [
 function App() {
 	const trendsByCategory = {
 		스포츠: [
-			'축1구',
+			'축구',
 			'야구',
 			'농구',
 			'테니스',
@@ -165,34 +166,21 @@ function App() {
 					<div className="recommandpg-subheader-text-container">
 						트렌드 키워드 선택
 					</div>
-					<p>
+					<div className="recommandpg-subheader-detailtext-container">
 						선택하신 카테고리 내 최근 N개월 동안 관련 결과 분석
 						콘텐트에서 높은 빈도수를 보이는 키워드를 시각화하여
 						보여준 그래프입니다.
-					</p>
-					<div className="h-[50px]" />
-					{selectedCategory && (
-						<div className="recommandpg-circle-container">
-							{trendsByCategory[selectedCategory].map(
-								(trend, index) => (
-									<button
-										key={index}
-										className={`recommandpg-circle recommandpg-circle-${
-											index + 1
-										} ${
-											selectedTrend === trend
-												? 'highlight'
-												: ''
-										}`}
-										onClick={() => handleTrendClick(trend)}
-									>
-										{trend}
-									</button>
-								),
-							)}
-						</div>
-					)}
-					<div className="h-[50px]" />
+					</div>
+					<div className="h-[10px]" />
+					<div className="recommandpg-bubble-button-container">
+						{selectedCategory && (
+							<BubbleButtons
+								trends={trendsByCategory[selectedCategory]}
+								selectedTrend={selectedTrend}
+								onTrendClick={handleTrendClick}
+							/>
+						)}
+					</div>
 
 					<div className="h-[25px]" />
 

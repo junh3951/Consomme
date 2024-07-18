@@ -1,5 +1,16 @@
 @import url('@/presentation/assets/style/Global.css');
 
+:root {
+	--base-size: 4vw;
+	--size-increment: 0.75vw;
+	--min-base-size: 55px; /* Minimum base size */
+	--min-size-increment: 5px; /* Minimum size increment */
+	--min-font-size: 12px; /* Minimum font size */
+	--max-base-size: 20px; /* Maximum base size */
+	--max-size-increment: 10px; /* Maximum size increment */
+	--max-font-size: 24px; /* Maximum font size */
+}
+
 .bubble-body,
 .bubble-html,
 .bubble-main {
@@ -34,153 +45,42 @@
 	background-color: white;
 }
 
-.bubble-left-sidebar {
-	position: absolute;
-	left: 0;
-	width: 300px;
-	min-width: 300px;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	background: #ededed;
-	background: color(display-p3 0.9308 0.9308 0.9308);
-}
-
-.bubble-greeting-text {
-	width: 80%;
-	font-family: 'PretendardVariable', sans-serif;
-	font-size: clamp(16px, 2vw, 350%);
-	color: #000;
-	position: absolute;
-	top: 8%;
-	left: 8%;
-}
-
-.bubble-head-logo-box {
-	display: flex;
-	width: 65%;
-	flex-direction: row;
-}
-
-.bubble-head-logo-container {
-	width: 52px;
-	height: 52px;
-	flex-shrink: 0;
-	align-items: flex-end;
-	justify-content: flex-start;
-}
-
-.bubble-head-logo {
-	width: 100%;
-	height: 100%;
-	object-fit: contain;
-}
-
-.bubble-head-logo-text-container {
-	position: relative;
-	left: 14px;
-	top: -5px;
-	font-family: 'PretendardVariable', sans-serif;
-	font-size: 130%;
-	margin-top: 16px;
-	color: black;
-}
-
-.bubble-sub-text-container {
-	position: relative;
-	font-family: 'PretendardVariable', sans-serif;
-	font-size: 22px;
-	left: -65px;
-	font-weight: 500;
-	margin-top: 16px;
-	color: #898989;
-	color: color(display-p3 0.5389 0.5389 0.5389);
-}
-
-.bubble-header-text-container {
-	font-family: 'PretendardVariable', sans-serif;
-	font-size: 160%;
-	margin-top: 16px;
-	color: black;
-}
-
-.bubble-subheader-text-container {
-	position: relative;
-	left: calc(anchor(right) + 20px);
-	font-family: 'PretendardVariable', sans-serif;
-	font-size: 110%;
-	font-weight: 400;
-	margin-top: 16px;
-	color: black;
-}
-
-.bubble-right-content-box {
-	position: absolute;
-	right: 0;
-	width: calc(100% - 255px);
-	min-width: 500px;
-	height: 100%;
-	background: #ffffff;
-	display: flex;
-	flex-direction: column;
-	align-items: center; /* Align items from the start horizontally */
-	justify-content: flex-start; /* Align items from the start vertically */
-	padding: 20px; /* Add some padding for better spacing */
-}
-
-.bubble-right-content-container {
-	width: 80%;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start; /* Align items from the start horizontally */
-	justify-content: flex-start; /* Align items from the start vertically */
-}
-
-.bubble-input-container {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	width: 100%;
-	min-width: 300px;
-	margin: 20px 0;
-}
-
-.bubble-button-container {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	width: 100%;
-}
-
-.bubble-category-button-container {
-	display: flex;
-	flex-direction: row;
-	align-items: flex-start;
-	width: 100%;
-	gap: 5px;
-	overflow-x: auto;
-	white-space: nowrap;
-}
-
 .bubble-circle-container {
-	display: flex;
-	flex-wrap: wrap;
 	position: relative;
 	width: 100%;
+	max-width: 500px;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .bubble-circle {
+	position: absolute;
 	background-color: #e6e6e6;
 	border-radius: 50%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-	margin: 10px;
 	color: #191919;
 	cursor: pointer;
 	transition: background-color 0.3s, transform 0.3s;
+	animation-name: grow;
+	animation-timing-function: ease-out;
+}
+
+.bubble-circle.animate {
+	animation: grow 0.5s ease-out;
+}
+
+@keyframes grow {
+	0% {
+		transform: scale(0);
+	}
+	100% {
+		transform: scale(1);
+	}
 }
 
 .bubble-circle:hover {
@@ -192,67 +92,199 @@
 	background: #2f2f2f;
 	background: color(display-p3 0.1824 0.1824 0.1824);
 	color: #fff; /* Adjust the text color as needed */
+	animation: none; /* Prevent animation when highlighted */
 }
 
 .bubble-circle-1 {
-	width: 11vw;
-	height: 11vw;
-	font-size: 30px;
-	margin-left: 16.5vw;
+	width: clamp(
+		calc(var(--min-base-size) + 1 * var(--min-size-increment)),
+		calc(var(--base-size) + 1 * var(--size-increment)),
+		calc(var(--max-base-size) + 1 * var(--max-size-increment))
+	);
+	height: clamp(
+		calc(var(--min-base-size) + 1 * var(--min-size-increment)),
+		calc(var(--base-size) + 1 * var(--size-increment)),
+		calc(var(--max-base-size) + 1 * var(--max-size-increment))
+	);
+	font-size: clamp(
+		var(--min-font-size),
+		calc(0.625vw + 0.125%),
+		var(--max-font-size)
+	);
+	top: 60%;
+	left: 82%;
+	animation-duration: 0.5s;
+	animation-delay: 0.1s;
 }
 
 .bubble-circle-2 {
-	width: 10.5vw;
-	height: 10.5vw;
-	font-size: 30px;
-	margin-left: 38vw;
-	margin-top: -7.8vw;
+	width: clamp(
+		calc(var(--min-base-size) + 2 * var(--min-size-increment)),
+		calc(var(--base-size) + 2 * var(--size-increment)),
+		calc(var(--max-base-size) + 2 * var(--max-size-increment))
+	);
+	height: clamp(
+		calc(var(--min-base-size) + 2 * var(--min-size-increment)),
+		calc(var(--base-size) + 2 * var(--size-increment)),
+		calc(var(--max-base-size) + 2 * var(--max-size-increment))
+	);
+	font-size: clamp(
+		var(--min-font-size),
+		calc(0.75vw + 0.25%),
+		var(--max-font-size)
+	);
+	top: 10%;
+	left: 27%;
+	animation-duration: 0.6s;
+	animation-delay: 0.2s;
 }
 
 .bubble-circle-3 {
-	width: 9vw;
-	height: 9vw;
-	font-size: 25px;
-	margin-left: -0.69vw;
-	margin-top: -1.83vw;
+	width: clamp(
+		calc(var(--min-base-size) + 3 * var(--min-size-increment)),
+		calc(var(--base-size) + 3 * var(--size-increment)),
+		calc(var(--max-base-size) + 3 * var(--max-size-increment))
+	);
+	height: clamp(
+		calc(var(--min-base-size) + 3 * var(--min-size-increment)),
+		calc(var(--base-size) + 3 * var(--size-increment)),
+		calc(var(--max-base-size) + 3 * var(--max-size-increment))
+	);
+	font-size: clamp(
+		var(--min-font-size),
+		calc(0.875vw + 0.375%),
+		var(--max-font-size)
+	);
+	top: 60%;
+	left: 15%;
+	animation-duration: 0.7s;
+	animation-delay: 0.3s;
 }
 
 .bubble-circle-4 {
-	width: 8.7vw;
-	height: 8.7vw;
-	font-size: 25px;
-	margin-left: 28.4vw; /* 620px / 1500px */
-	margin-top: -15vw;
+	width: clamp(
+		calc(var(--min-base-size) + 4 * var(--min-size-increment)),
+		calc(var(--base-size) + 4 * var(--size-increment)),
+		calc(var(--max-base-size) + 4 * var(--max-size-increment))
+	);
+	height: clamp(
+		calc(var(--min-base-size) + 4 * var(--min-size-increment)),
+		calc(var(--base-size) + 4 * var(--size-increment)),
+		calc(var(--max-base-size) + 4 * var(--max-size-increment))
+	);
+	font-size: clamp(
+		var(--min-font-size),
+		calc(1vw + 0.5%),
+		var(--max-font-size)
+	);
+	top: 25%;
+	left: 74%;
+	animation-duration: 0.8s;
+	animation-delay: 0.4s;
 }
 
 .bubble-circle-5 {
-	width: 7.33vw;
-	height: 7.33vw;
-	font-size: 20px;
-	margin-left: -15vw; /* -327px / 1500px */
-	margin-top: -8vw; /* -175px / 1500px */
+	width: clamp(
+		calc(var(--min-base-size) + 5 * var(--min-size-increment)),
+		calc(var(--base-size) + 5 * var(--size-increment)),
+		calc(var(--max-base-size) + 5 * var(--max-size-increment))
+	);
+	height: clamp(
+		calc(var(--min-base-size) + 5 * var(--min-size-increment)),
+		calc(var(--base-size) + 5 * var(--size-increment)),
+		calc(var(--max-base-size) + 5 * var(--max-size-increment))
+	);
+	font-size: clamp(
+		var(--min-font-size),
+		calc(1.125vw + 0.625%),
+		var(--max-font-size)
+	);
+	top: 50%;
+	left: 58%;
+	animation-duration: 0.9s;
+	animation-delay: 0.5s;
 }
 
 .bubble-circle-6 {
-	width: 7.33vw;
-	height: 7.33vw;
-	font-size: 20px;
-	margin-left: 18.33vw; /* 400px / 1500px */
-	margin-top: -17.4vw; /* -380px / 1500px */
+	width: clamp(
+		calc(var(--min-base-size) + 6 * var(--min-size-increment)),
+		calc(var(--base-size) + 6 * var(--size-increment)),
+		calc(var(--max-base-size) + 6 * var(--max-size-increment))
+	);
+	height: clamp(
+		calc(var(--min-base-size) + 6 * var(--min-size-increment)),
+		calc(var(--base-size) + 6 * var(--size-increment)),
+		calc(var(--max-base-size) + 6 * var(--max-size-increment))
+	);
+	font-size: clamp(
+		var(--min-font-size),
+		calc(1.25vw + 0.75%),
+		var(--max-font-size)
+	);
+	top: 10%;
+	left: 51%;
+	animation-duration: 1s;
+	animation-delay: 0.6s;
 }
 
 .bubble-circle-7 {
-	width: 6vw;
-	height: 6vw;
-	font-size: 13px;
-	margin-left: -22.32vw; /* -487px / 1500px */
-	margin-top: -6.41vw; /* -140px / 1500px */
+	width: clamp(
+		calc(var(--min-base-size) + 7 * var(--min-size-increment)),
+		calc(var(--base-size) + 7 * var(--size-increment)),
+		calc(var(--max-base-size) + 7 * var(--max-size-increment))
+	);
+	height: clamp(
+		calc(var(--min-base-size) + 7 * var(--min-size-increment)),
+		calc(var(--base-size) + 7 * var(--size-increment)),
+		calc(var(--max-base-size) + 7 * var(--max-size-increment))
+	);
+	font-size: clamp(
+		var(--min-font-size),
+		calc(1.375vw + 0.875%),
+		var(--max-font-size)
+	);
+	top: 37%;
+	left: 32%;
+	animation-duration: 1.1s;
+	animation-delay: 0.7s;
 }
 
 .bubble-circle-8 {
-	width: 4.58vw;
-	height: 4.58vw;
-	font-size: 12px;
-	margin-left: -12.73vw; /* -278px / 1500px */
-	margin-top: -20vw; /* -437px / 1500px */
+	width: clamp(
+		calc(var(--min-base-size) + 8 * var(--min-size-increment)),
+		calc(var(--base-size) + 8 * var(--size-increment)),
+		calc(var(--max-base-size) + 8 * var(--max-size-increment))
+	);
+	height: clamp(
+		calc(var(--min-base-size) + 8 * var(--min-size-increment)),
+		calc(var(--base-size) + 8 * var(--size-increment)),
+		calc(var(--max-base-size) + 8 * var(--max-size-increment))
+	);
+	font-size: clamp(
+		var(–min-font-size),
+		calc(1.5vw + 1%),
+		var(–max-font-size)
+	);
+	top: 20%;
+	left: 3%;
+	animation-duration: 1.2s;
+	animation-delay: 0.8s;
+}
+
+.bubble-circle span {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100%;
+}
+.bubble-circle span {
+	display: block;
+	overflow: visible;
+	text-overflow: clip;
+	flex-wrap: wrap;
+	text-wrap: wrap;
+	white-space: wrap;
+	word-break: keep-all;
+	width: 110%;
 }
