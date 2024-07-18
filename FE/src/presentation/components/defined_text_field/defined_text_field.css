@@ -27,14 +27,15 @@
 	border-radius: 10px;
 	padding: 10px 12px;
 	font-family: 'Pretendard', sans-serif;
-	font-weight: 500;
-	font-size: 18px;
+	font-weight: 400;
+	font-size: 17px;
 	color: #2f2f2f;
 	display: flex;
 	align-items: center;
 	background-color: #f8f8f8;
 	border: 2px solid #e6e6e6;
 	white-space: normal; /* Allow text to wrap */
-	word-wrap: break-word; /* Break words if necessary */
+	word-wrap: break-word;
+	overflow-wrap: break-word;
 	margin-top: 10px;
 }

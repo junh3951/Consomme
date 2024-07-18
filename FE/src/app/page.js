@@ -1,7 +1,7 @@
 'use client'
 
 import './page.css'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Icon from '@/presentation/assets/image/icon'
 import RectButton from '@/presentation/components/rect_button/rect_button'
@@ -9,6 +9,22 @@ import InputWithLabel from '@/presentation/components/input_with_label/input_wit
 
 export default function Home() {
 	const router = useRouter()
+	const [previousPage, setPreviousPage] = useState('')
+
+	useEffect(() => {
+		const prevPage = localStorage.getItem('previousPage')
+		if (prevPage) {
+			setPreviousPage(prevPage)
+		}
+		// localStorage에 현재 페이지를 저장하는 작업을 나중에 수행
+		setTimeout(() => {
+			localStorage.setItem('previousPage', window.location.href)
+		}, 0)
+	}, [])
+
+	useEffect(() => {
+		console.log('Previous page:', previousPage)
+	}, [previousPage])
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 

@@ -172,6 +172,10 @@
 	gap: 5px;
 	overflow-x: auto;
 	white-space: nowrap;
+	scrollbar-width: none;
+}
+.recommandpg-category-button-container::-webkit-scrollbar {
+	display: none; /* WebKit */
 }
 
 .recommandpg-bubble-button-container {

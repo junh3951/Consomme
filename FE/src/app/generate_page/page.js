@@ -1,11 +1,30 @@
 'use client'
 
 import './page.css'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import Sidebar from '@/presentation/components/sidebar/sidebar'
+import InputWithLabel from '@/presentation/components/input_with_label/input_with_label'
+import RectButton from '@/presentation/components/rect_button/rect_button'
 
 function App() {
 	const router = useRouter()
+	const [previousPage, setPreviousPage] = useState('')
+
+	useEffect(() => {
+		const prevPage = localStorage.getItem('previousPage')
+		if (prevPage) {
+			setPreviousPage(prevPage)
+		}
+		// localStorage에 현재 페이지를 저장하는 작업을 나중에 수행
+		setTimeout(() => {
+			localStorage.setItem('previousPage', window.location.href)
+		}, 0)
+	}, [])
+
+	useEffect(() => {
+		console.log('Previous page:', previousPage)
+	}, [previousPage])
 	const [selectedContent, setSelectedContent] = useState(null)
 
 	const contents = [
@@ -46,81 +65,86 @@ function App() {
 	const numOfContents = contents.length
 
 	return (
-		<div className="generatepg-right-content-box">
-			<div className="generatepg-right-content-container">
-				<div className="h-[83px]" />
-				<button
-					className="generatepg-back-button"
-					onClick={() => router.push(`/recommned_page`)}
-				>
-					← 콘텐츠 영상 소재 생성하기
-				</button>
-				<div className="h-[23px]" />
-				<div className="generatepg-subheader-text-container">
-					소재 후보 선택
-				</div>
-				<div className="h-[23px]" />
-				<div className="generatepg-content-grid">
-					{contents.map((content, index) => (
-						<div
-							className={`generatepg-content-box ${
-								selectedContent === index
-									? 'selected'
-									: selectedContent !== null
-									? 'unselected'
-									: ''
-							}`}
-							key={index}
-							onClick={() => handleContentClick(index)}
-						>
-							<div className="generatepg-content-box-number">
-								후보 {index + 1}
+		<main className="recommandpg-flex recommandpg-min-h-screen recommandpg-flex-col recommandpg-items-center recommandpg-justify-center recommandpg-bg-white">
+			<Sidebar />
+			<div className="generatepg-right-content-box">
+				<div className="generatepg-right-content-container">
+					<div className="h-[55px]" />
+					<button
+						className="generatepg-back-button"
+						onClick={() => router.push(previousPage)}
+					>
+						← 콘텐츠 영상 소재 생성하기
+					</button>
+					<div className="generatepg-subheader-text-container">
+						소재 후보 선택
+					</div>
+					<div className="h-[15px]" />
+					<div className="generatepg-content-grid">
+						{contents.map((content, index) => (
+							<div
+								className={`generatepg-content-box ${
+									selectedContent === index
+										? 'selected'
+										: selectedContent !== null
+										? 'unselected'
+										: ''
+								}`}
+								key={index}
+								onClick={() => handleContentClick(index)}
+							>
+								<div className="generatepg-content-box-number">
+									후보 {index + 1}
+								</div>
+								<div className="generatepg-content-box-label">
+									소재
+								</div>
+								<div className="generatepg-content-title-text">
+									{content.title}
+								</div>
+								<div className="generatepg-content-box-label">
+									소재 추천 이유
+								</div>
+								<div className="generatepg-content-box-text">
+									{content.reason}
+								</div>
+								<div className="generatepg-date">
+									{content.date}
+								</div>
 							</div>
-							<div className="generatepg-content-box-label">
-								소재
-							</div>
-							<div className="generatepg-content-title-text">
-								{content.title}
-							</div>
-							<div className="generatepg-content-box-label">
-								소재 추천 이유
-							</div>
-							<div className="generatepg-content-box-text">
-								{content.reason}
-							</div>
-							<div className="generatepg-date">
-								{content.date}
-							</div>
-						</div>
-					))}
-				</div>
-				<div className="h-[50px]" />
-				<div className="generatepg-subheader-text-container">
-					디테일
-				</div>
-				<div className="generatepg-input-container">
-					<input
-						className="generatepg-input-field"
-						placeholder={
-							'ex) 한달살기하면서 인기 있을 생활 콘텐츠 요소도 트렌드에 기반해서 같이 추천해줘.'
-						}
+						))}
+					</div>
+					<div className="h-[10px]" />
+					<div className="generatepg-subheader-text-container">
+						디테일
+					</div>
+					<InputWithLabel
+						label=""
+						placeholder="ex) 한달살기하면서 인기 있을 생활 콘텐츠 요소도 트렌드에 기반해서 같이 추천해줘."
+						type="textarea"
 						onChange={handleInputChange}
 					/>
-				</div>
-				<div className="h-[250px]" />
-				<div className="generatepg-last-button-container">
-					<button
-						className="generatepg-last-button"
-						onClick={handleButtonClick}
-					>
-						이대로 완성하기
-					</button>
-					<button className="generatepg-last-button">
-						다시 생성하기
-					</button>
+					<div className="h-[20px]" />
+					<div className="generatepg-last-button-container">
+						<div className="generatepg-last-button-container">
+							<RectButton
+								type="highlight"
+								text="이대로 완성하기"
+								onClick={() => router.push(`/result_page`)}
+							/>
+						</div>
+						<div className="generatepg-last-button-container">
+							<RectButton
+								type="default"
+								text="다시 생성하기"
+								onClick={() => router.push(`/result_page`)}
+								disabled={true}
+							/>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
+		</main>
 	)
 }
 export default App

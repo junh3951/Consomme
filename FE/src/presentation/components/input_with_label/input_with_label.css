@@ -35,3 +35,30 @@
 	color: #b0b0b0;
 	color: color(display-p3 0.69 0.69 0.69);
 }
+
+.iwl-textarea-field {
+	width: 100%;
+	height: auto;
+	min-height: 45px;
+	flex-shrink: 0;
+	border-radius: 10px;
+	border: 2px solid #c4c4c4;
+	border: 2px solid color(display-p3 0.7686 0.7686 0.7686);
+	padding: 12px;
+	font-family: 'Pretendard', sans-serif;
+	font-weight: 500;
+	font-size: 15px;
+	color: #191919;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	resize: vertical;
+	box-sizing: border-box;
+}
+.iwl-textarea-field::-webkit-scrollbar {
+	display: none; /* WebKit */
+}
+
+.iwl-textarea-field::placeholder {
+	color: #b0b0b0;
+	color: color(display-p3 0.69 0.69 0.69);
+}

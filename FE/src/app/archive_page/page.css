@@ -12,7 +12,7 @@ main {
 
 .archivepg-header-text-container {
 	font-family: 'PretendardVariable', sans-serif;
-	font-size: 190%;
+	font-size: 160%;
 	margin-top: 16px;
 	color: #191919;
 }
@@ -21,28 +21,35 @@ main {
 	position: relative;
 	left: calc(anchor(right) + 20px);
 	font-family: 'PretendardVariable', sans-serif;
-	font-size: 130%;
-	font-weight: 600;
-	color: #191919;
+	font-size: 110%;
+	font-weight: 400;
+	margin-top: 16px;
+	color: black;
 }
 
 .archivepg-right-content-box {
 	position: absolute;
 	right: 0;
-	width: calc(100vw - 300px);
+	width: calc(100% - 255px);
+	min-width: 500px;
 	height: 100%;
+	background: #ffffff;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	min-width: 500px;
+	align-items: center; /* Align items from the start horizontally */
+	justify-content: flex-start; /* Align items from the start vertically */
+	padding: 20px; /* Add some padding for better spacing */
+	overflow: scroll;
+	overflow-x: hidden;
 }
 
 .archivepg-right-content-container {
 	width: 80%;
 	display: flex;
 	flex-direction: column;
-	align-items: normal;
-	justify-content: flex-start;
+	align-items: flex-start; /* Align items from the start horizontally */
+	justify-content: flex-start; /* Align items from the start vertically */
+	flex-grow: 1;
 }
 
 .archivepg-content-grid-wrapper {
@@ -51,9 +58,12 @@ main {
 }
 
 .archivepg-content-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	width: 100%;
+	display: flex;
 	gap: 20px;
+	display: flex; /* 그리드 대신 플렉스로 변경하여 요소들이 한 줄로 배열되게 함 */
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .archivepg-content-box {
@@ -66,7 +76,9 @@ main {
 	justify-content: space-between;
 	cursor: pointer;
 	transition: box-shadow 0.3s ease;
-	min-width: 300px;
+	width: 100%;
+	min-width: 368px;
+	margin-right: auto;
 }
 
 .archivepg-content-box:hover {

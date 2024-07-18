@@ -1,12 +1,29 @@
 .reference-field-container {
-	display: flex;
-	overflow-x: auto;
+	width: 100%;
+	grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+	gap: 10px;
+	display: flex; /* 그리드 대신 플렉스로 변경하여 요소들이 한 줄로 배열되게 함 */
+	flex-wrap: nowrap; /* 요소들이 줄 바꿈 없이 한 줄로 유지 */
+	overflow-x: auto; /* 수평 스크롤바 활성화 */
+	scrollbar-width: none;
+}
+
+.reference-field-container::-webkit-scrollbar {
+	display: none; /* Chrome, Safari, Opera */
 }
 
 .reference-field {
-	display: flex;
-	flex-direction: row;
-	gap: 20px;
+	width: 100%;
+	grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+	gap: calc(15% - 40px);
+	display: flex; /* 그리드 대신 플렉스로 변경하여 요소들이 한 줄로 배열되게 함 */
+	flex-wrap: nowrap; /* 요소들이 줄 바꿈 없이 한 줄로 유지 */
+	overflow-x: auto; /* 수평 스크롤바 활성화 */
+	scrollbar-width: none;
+}
+
+.reference-field::-webkit-scrollbar {
+	display: none; /* Chrome, Safari, Opera */
 }
 
 .reference-item {

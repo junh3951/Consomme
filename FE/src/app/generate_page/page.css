@@ -12,53 +12,66 @@ generatepg-main {
 
 .generatepg-back-button {
 	font-family: 'PretendardVariable', sans-serif;
-	font-size: 190%;
+	font-size: 160%;
 	margin-top: 16px;
-	color: #191919;
+	color: black;
+	margin-top: 16px;
 	width: 420px;
 	background-color: white !important;
 	border: none;
-	margin-left: -50px;
+	margin-left: -95px;
 }
 
 .generatepg-subheader-text-container {
 	position: relative;
 	left: calc(anchor(right) + 20px);
 	font-family: 'PretendardVariable', sans-serif;
-	font-size: 160%;
-	font-weight: bold;
-	/* margin-top: 16px; */
-	color: #191919;
+	font-size: 110%;
+	font-weight: 400;
+	margin-top: 16px;
+	color: black;
 }
 
 .generatepg-right-content-box {
 	position: absolute;
 	right: 0;
-	width: calc(100vw - 300px);
+	width: calc(100% - 255px);
+	min-width: 500px;
 	height: 100%;
+	background: #ffffff;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: center; /* Align items from the start horizontally */
+	justify-content: flex-start; /* Align items from the start vertically */
+	padding: 20px; /* Add some padding for better spacing */
+	overflow: scroll;
+	overflow-x: hidden;
 }
 
 .generatepg-right-content-container {
 	width: 80%;
 	display: flex;
 	flex-direction: column;
-	align-items: normal;
-	justify-content: flex-start;
+	align-items: flex-start; /* Align items from the start horizontally */
+	justify-content: flex-start; /* Align items from the start vertically */
+	flex-grow: 1;
 }
 
 .generatepg-content-grid {
-	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	width: 101%;
+	grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
 	gap: 40px;
 	display: flex; /* 그리드 대신 플렉스로 변경하여 요소들이 한 줄로 배열되게 함 */
 	flex-wrap: nowrap; /* 요소들이 줄 바꿈 없이 한 줄로 유지 */
 	overflow-x: auto; /* 수평 스크롤바 활성화 */
+	scrollbar-width: none;
+}
+.generatepg-content-grid::-webkit-scrollbar {
+	display: none; /* WebKit */
 }
 
 .generatepg-content-box {
-	flex: 0 0 450px;
+	flex: 0 0 370px;
 	background-color: #f8f8f8;
 	border: 2px solid #e6e6e6;
 	border-radius: 10px;
@@ -73,7 +86,7 @@ generatepg-main {
 
 .generatepg-content-box-number {
 	color: #191919;
-	font-size: 130%;
+	font-size: 100%;
 	position: relative;
 	top: -60px;
 	left: -20px;
@@ -85,8 +98,9 @@ generatepg-main {
 
 .generatepg-content-box-label {
 	font-size: 16px;
-	color: #606060;
+	color: #8e8e8e;
 	margin-bottom: 10px;
+	font-weight: 600;
 }
 
 .generatepg-content-title-text {
@@ -99,7 +113,7 @@ generatepg-main {
 .generatepg-content-box-text {
 	font-size: 18px;
 	color: #606060;
-	font-weight: 600;
+	font-weight: 350;
 }
 
 .generatepg-content-box.selected {
@@ -153,13 +167,6 @@ generatepg-main {
 	transition: transform 0.1s;
 }
 
-.generatepg-input-container {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	margin: 4px; /* 필요한 경우 조정 */
-}
-
 .generatepg-input-field {
 	width: 100%; /* 필요에 따라 조정 가능 */
 	height: 50px;
@@ -172,6 +179,10 @@ generatepg-main {
 	font-weight: 500;
 	font-size: 20px;
 	color: #191919;
+	overflow: visible;
+	overflow-wrap: normal;
+	resize: vertical; /* Allow vertical resizing */
+	white-space: pre-wrap;
 }
 
 .generatepg-input-field::placeholder {

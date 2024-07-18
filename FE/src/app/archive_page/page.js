@@ -1,11 +1,28 @@
 'use client'
 
 import './page.css'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import Sidebar from '@/presentation/components/sidebar/sidebar'
 
 function App() {
 	const router = useRouter()
+	const [previousPage, setPreviousPage] = useState('')
+
+	useEffect(() => {
+		const prevPage = localStorage.getItem('previousPage')
+		if (prevPage) {
+			setPreviousPage(prevPage)
+		}
+		// localStorage에 현재 페이지를 저장하는 작업을 나중에 수행
+		setTimeout(() => {
+			localStorage.setItem('previousPage', window.location.href)
+		}, 0)
+	}, [])
+
+	useEffect(() => {
+		console.log('Previous page:', previousPage)
+	}, [previousPage])
 
 	const contents = [
 		{
@@ -34,14 +51,15 @@ function App() {
 
 	const handleCardClick = (title) => {
 		const params = new URLSearchParams({ title }).toString()
-		router.push(`/detail_page?${params}`)
+		router.push(`/result_page`)
 	}
 
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-center bg-white">
+		<main className="recommandpg-flex recommandpg-min-h-screen recommandpg-flex-col recommandpg-items-center recommandpg-justify-center recommandpg-bg-white">
+			<Sidebar />
 			<div className="archivepg-right-content-box">
 				<div className="archivepg-right-content-container">
-					<div className="h-[83px]" />
+					<div className="h-[55px]" />
 					<div className="archivepg-header-text-container">
 						소재 보관함
 					</div>
