@@ -1,6 +1,4 @@
 const express = require('express')
-const https = require('https')
-const fs = require('fs')
 const axios = require('axios')
 const cors = require('cors')
 
@@ -18,7 +16,7 @@ app.get('/main', (req, res) => {
 app.post('/search', async (req, res) => {
 	try {
 		const { search_keyword, category } = req.body
-		const response = await axios.post('https://localhost:5001/search', {
+		const response = await axios.post('http://localhost:5001/search', {
 			search_keyword: search_keyword,
 			category: category,
 		})
@@ -32,7 +30,7 @@ app.post('/search', async (req, res) => {
 app.post('/generate', async (req, res) => {
 	try {
 		const { search_keyword, category, chosen_keyword } = req.body
-		const response = await axios.post('https://localhost:5001/generate', {
+		const response = await axios.post('http://localhost:5001/generate', {
 			search_keyword: search_keyword,
 			category: category,
 			chosen_keyword: chosen_keyword,
@@ -47,7 +45,7 @@ app.post('/generate', async (req, res) => {
 app.post('/enhance', async (req, res) => {
 	try {
 		const { selected_trending, enhancement_instruction } = req.body
-		const response = await axios.post('https://localhost:5001/enhance', {
+		const response = await axios.post('http://localhost:5001/enhance', {
 			selected_trending: selected_trending,
 			enhancement_instruction: enhancement_instruction,
 		})
@@ -58,12 +56,6 @@ app.post('/enhance', async (req, res) => {
 	}
 })
 
-// Read the SSL certificate and key files
-const httpsOptions = {
-	key: fs.readFileSync('server.key'),
-	cert: fs.readFileSync('server.cert'),
-}
-
-https.createServer(httpsOptions, app).listen(port, '0.0.0.0', () => {
-	console.log(`Server is running at https://localhost:${port}`)
+app.listen(port, '0.0.0.0', () => {
+	console.log(`Server is running at http://localhost:${port}`)
 })
