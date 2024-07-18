@@ -3,11 +3,9 @@
 import './page.css'
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import Icon from '@/presentation/assets/image/icon'
 import RectButton from '@/presentation/components/rect_button/rect_button'
 import RoundButton from '@/presentation/components/round_button/round_button'
 import InputWithLabel from '@/presentation/components/input_with_label/input_with_label'
-import SidebarButton from '@/presentation/components/sidebar_button/sidebar_button'
 import Sidebar from '@/presentation/components/sidebar/sidebar'
 import BubbleButtons from '@/presentation/components/bubble_buttons/bubble_buttons'
 
@@ -42,6 +40,8 @@ function App() {
 	const [inputValue, setInputValue] = useState('')
 	const [selectedCategory, setSelectedCategory] = useState(null)
 	const [selectedTrend, setSelectedTrend] = useState(null)
+	const [isSearching, setIsSearching] = useState(false)
+	const [isGenerating, setIsGenerating] = useState(false)
 	const router = useRouter()
 	const [previousPage, setPreviousPage] = useState('')
 
@@ -65,6 +65,7 @@ function App() {
 
 	const handleCategoryClick = async (category) => {
 		setSelectedCategory(category)
+		setIsSearching(true)
 
 		const data = {
 			search_keyword: inputValue,
@@ -128,6 +129,8 @@ function App() {
 		} catch (error) {
 			console.error('Error during search request:', error)
 			alert('검색 요청 처리 중 오류가 발생했습니다.')
+		} finally {
+			setIsSearching(false)
 		}
 	}
 
@@ -136,6 +139,8 @@ function App() {
 	}
 
 	const handleGenerateClick = async () => {
+		setIsGenerating(true)
+
 		const data = {
 			search_keyword: inputValue,
 			category: selectedCategory,
@@ -170,15 +175,17 @@ function App() {
 			console.log('generatedContentData:', generateResponseData)
 		} catch (error) {
 			console.error('Error during generate request:', error)
+		} finally {
+			setIsGenerating(false)
+			router.push(`/generate_page?category=${selectedCategory}`)
 		}
-
-		router.push(`/generate_page?category=${selectedCategory}`)
 	}
 
 	return (
 		<main className="recommandpg-flex recommandpg-min-h-screen recommandpg-flex-col recommandpg-items-center recommandpg-justify-center recommandpg-bg-white">
 			<Sidebar />
 			<div className="recommandpg-right-content-box">
+				{isGenerating && <div className="loading-overlay" />}
 				<div className="recommandpg-right-content-container">
 					<div className="h-[55px]" />
 					<div className="recommandpg-header-text-container">
@@ -207,6 +214,7 @@ function App() {
 							}
 							text="스포츠"
 							onClick={() => handleCategoryClick('스포츠')}
+							disabled={isSearching}
 						/>
 						<RoundButton
 							type={
@@ -216,6 +224,7 @@ function App() {
 							}
 							text="뷰티 / 패션"
 							onClick={() => handleCategoryClick('뷰티 / 패션')}
+							disabled={isSearching}
 						/>
 						<RoundButton
 							type={
@@ -225,6 +234,7 @@ function App() {
 							}
 							text="엔터테인먼트"
 							onClick={() => handleCategoryClick('엔터테인먼트')}
+							disabled={isSearching}
 						/>
 						<RoundButton
 							type={
@@ -234,6 +244,7 @@ function App() {
 							}
 							text="음식"
 							onClick={() => handleCategoryClick('음식')}
+							disabled={isSearching}
 						/>
 						<RoundButton
 							type={
@@ -243,6 +254,7 @@ function App() {
 							}
 							text="게임"
 							onClick={() => handleCategoryClick('게임')}
+							disabled={isSearching}
 						/>
 						<RoundButton
 							type={
@@ -252,6 +264,7 @@ function App() {
 							}
 							text="여행 / 이벤트"
 							onClick={() => handleCategoryClick('여행 / 이벤트')}
+							disabled={isSearching}
 						/>
 						<RoundButton
 							type={
@@ -263,6 +276,7 @@ function App() {
 							onClick={() =>
 								handleCategoryClick('애완동물 / 동물')
 							}
+							disabled={isSearching}
 						/>
 					</div>
 					<div className="recommandpg-subheader-text-container">
