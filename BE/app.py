@@ -172,8 +172,11 @@ def search_videos():
     filename_keyword = sanitize_filename(search_keyword) + '_youtube_videos.csv'
     filename_category = sanitize_filename(category) + '_youtube_videos.csv'
 
-    df_keyword.to_csv(filename_keyword, index=False, encoding='utf-8-sig')
-    df_category.to_csv(filename_category, index=False, encoding='utf-8-sig')
+    # 파일이 존재하지 않을 때만 CSV 파일 생성
+    if not os.path.exists(filename_keyword):
+        df_keyword.to_csv(filename_keyword, index=False, encoding='utf-8-sig')
+    if not os.path.exists(filename_category):
+        df_category.to_csv(filename_category, index=False, encoding='utf-8-sig')
 
     titles_category = df_category['title'].tolist()
     all_words_category = ' '.join(titles_category).split()
