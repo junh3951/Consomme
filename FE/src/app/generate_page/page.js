@@ -183,7 +183,7 @@ function App() {
 				...selectedTrending,
 				title: responseData.enhanced_recommendation
 					.split('\n')[0]
-					.replace('### ', '')
+					.replace('###', '')
 					.split(':')[1]
 					.trim(),
 				reason: responseData.enhanced_recommendation
@@ -212,7 +212,7 @@ function App() {
 
 	return (
 		<main className="recommandpg-flex recommandpg-min-h-screen recommandpg-flex-col recommandpg-items-center recommandpg-justify-center recommandpg-bg-white">
-			<Sidebar />
+			<Sidebar activePage="recommned_page" />
 			<div className="generatepg-right-content-box">
 				<div className="generatepg-right-content-container">
 					<div className="h-[55px]" />

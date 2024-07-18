@@ -269,9 +269,9 @@ function App() {
 						트렌드 키워드 선택
 					</div>
 					<div className="recommandpg-subheader-detailtext-container">
-						선택하신 카테고리 내 최근 N개월 동안 관련 결과 분석
+						카테고리를 선택하면 최근 N개월 동안 관련 결과 분석
 						콘텐트에서 높은 빈도수를 보이는 키워드를 시각화하여
-						보여준 그래프입니다.
+						보여줍니다.
 					</div>
 					<div className="h-[10px]" />
 					<div className="recommandpg-bubble-button-container">
@@ -290,7 +290,9 @@ function App() {
 						type="highlight"
 						text="생성하기"
 						onClick={handleGenerateClick}
-						disabled={!selectedCategory}
+						disabled={
+							!inputValue || !selectedCategory || !selectedTrend
+						}
 					/>
 				</div>
 			</div>

@@ -122,7 +122,7 @@ def enhance_recommendation(selected_trending, enhancement_instruction):
 
 def clean_word(word):
     word = word.lstrip('#')
-    word = re.sub(r'(은|는|을|를|이|가|의|에|와|과|도|로|으로|와|과|도|에서|에게|부터|까지|만|밖에|조차|마저|나마|커녕|보다|처럼|같이|듯이|채|이라서|이라서|하고|하고|으면|하면|들)$', '', word)
+    word = re.sub(r'(은|는|을|를|가|의|에|와|과|도|로|으로|와|과|도|에서|에게|부터|까지|만|밖에|조차|마저|나마|커녕|보다|처럼|같이|듯이|채|이라서|이라서|하고|하고|으면|하면|들)$', '', word)
     return word
 
 def contains_special_characters(word):
@@ -212,7 +212,8 @@ def generate_titles():
     titles_str_category = '\n'.join(titles_category)
     trending_titles_category = generate_trending_titles(titles_str_category, chosen_keyword, search_keyword)
 
-    trending_titles = trending_titles_category.split('\n\n')
+    # **소재:** 로 시작하는 텍스트를 기준으로 파싱
+    trending_titles = [title.strip() for title in trending_titles_category.split('**소재:**') if title.strip()]
     if len(trending_titles) >= 3:
         trending_1, trending_2, trending_3 = trending_titles[0], trending_titles[1], trending_titles[2]
     else:
