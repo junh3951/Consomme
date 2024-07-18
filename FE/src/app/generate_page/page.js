@@ -10,43 +10,61 @@ import RectButton from '@/presentation/components/rect_button/rect_button'
 function App() {
 	const router = useRouter()
 	const [previousPage, setPreviousPage] = useState('')
+	const [contents, setContents] = useState([])
+	const [selectedContent, setSelectedContent] = useState(null)
+	const [inputValue, setInputValue] = useState('')
 
 	useEffect(() => {
 		const prevPage = localStorage.getItem('previousPage')
 		if (prevPage) {
 			setPreviousPage(prevPage)
 		}
-		// localStorage에 현재 페이지를 저장하는 작업을 나중에 수행
 		setTimeout(() => {
 			localStorage.setItem('previousPage', window.location.href)
 		}, 0)
+
+		// JSON 데이터 파싱하여 contents 배열 업데이트
+		const generatedContentData = localStorage.getItem(
+			'generatedContentData',
+		)
+		if (generatedContentData) {
+			console.log('generatedContentData:', generatedContentData)
+			const parsedData = JSON.parse(generatedContentData)
+			const today = new Date().toISOString().split('T')[0] // 오늘 날짜
+
+			const newContents = []
+
+			const parseContent = (trendingData) => {
+				if (trendingData) {
+					const parts = trendingData.split('\n- **소재 추천 이유**:')
+					if (parts.length === 2) {
+						const title = parts[0]?.replace('### ', '').trim()
+						const reason = parts[1]?.trim()
+						console.log('Parsed title:', title)
+						console.log('Parsed reason:', reason)
+						if (title && reason) {
+							newContents.push({
+								title: title,
+								reason: reason,
+								date: today,
+							})
+						}
+					}
+				}
+			}
+
+			parseContent(parsedData.trending_1)
+			parseContent(parsedData.trending_2)
+			parseContent(parsedData.trending_3)
+
+			setContents(newContents)
+			console.log('Updated contents:', newContents)
+		}
 	}, [])
 
 	useEffect(() => {
 		console.log('Previous page:', previousPage)
 	}, [previousPage])
-	const [selectedContent, setSelectedContent] = useState(null)
-
-	const contents = [
-		//보관된 소재
-		{
-			title: '몽골로 단돈 150만원으로 한달살기하기',
-			reason: "현재 227만 구독자를 보유한 빠니보틀이 몽골로 여행을 간 영상이 175만회라는 조회수를 기록하며 큰 인기를 끌고 있습니다. 더불어, 현재 한달살기 컨텐츠로 'n만원으로 살아남기' 소재가 유행하는 트렌드임에 주목해 해당 영상 소재를 추천드립니다.",
-			date: '2024.07.09',
-		},
-		{
-			title: '몽골로 단돈 150만원으로 한달살기하기',
-			reason: "현재 227만 구독자를 보유한 빠니보틀이 몽골로 여행을 간 영상이 175만회라는 조회수를 기록하며 큰 인기를 끌고 있습니다. 더불어, 현재 한달살기 컨텐츠로 'n만원으로 살아남기' 소재가 유행하는 트렌드임에 주목해 해당 영상 소재를 추천드립니다.",
-			date: '2024.07.09',
-		},
-		{
-			title: '몽골로 단돈 150만원으로 한달살기하기',
-			reason: "현재 227만 구독자를 보유한 빠니보틀이 몽골로 여행을 간 영상이 175만회라는 조회수를 기록하며 큰 인기를 끌고 있습니다. 더불어, 현재 한달살기 컨텐츠로 'n만원으로 살아남기' 소재가 유행하는 트렌드임에 주목해 해당 영상 소재를 추천드립니다.",
-			date: '2024.07.09',
-		},
-	]
-
-	const [selectedContentTitle, setSelectedContentTitle] = useState('')
 
 	const handleInputChange = (e) => {
 		setInputValue(e.target.value)
@@ -56,13 +74,13 @@ function App() {
 		setSelectedContent(index) // 선택된 컨텐츠의 index를 설정
 	}
 
-	const handleButtonClick = (title) => {
-		const contentTitle = contents[selectedContent].title
-		const params = new URLSearchParams({ contentTitle }).toString()
-		router.push(`/result_page?${params}`)
+	const handleButtonClick = () => {
+		const contentTitle = contents[selectedContent]?.title
+		if (contentTitle) {
+			const params = new URLSearchParams({ contentTitle }).toString()
+			router.push(`/result_page?${params}`)
+		}
 	}
-
-	const numOfContents = contents.length
 
 	return (
 		<main className="recommandpg-flex recommandpg-min-h-screen recommandpg-flex-col recommandpg-items-center recommandpg-justify-center recommandpg-bg-white">
@@ -130,7 +148,7 @@ function App() {
 							<RectButton
 								type="highlight"
 								text="이대로 완성하기"
-								onClick={() => router.push(`/result_page`)}
+								onClick={handleButtonClick}
 							/>
 						</div>
 						<div className="generatepg-last-button-container">
@@ -147,4 +165,5 @@ function App() {
 		</main>
 	)
 }
+
 export default App

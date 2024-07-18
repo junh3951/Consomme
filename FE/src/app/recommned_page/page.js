@@ -117,7 +117,7 @@ function App() {
 		setSelectedTrend(trend)
 	}
 
-	const handleGenerateClick = async (selectedCategory) => {
+	const handleGenerateClick = async () => {
 		const data = {
 			search_keyword: inputValue,
 			category: selectedCategory,
@@ -149,10 +149,9 @@ function App() {
 				'generatedContentData',
 				JSON.stringify(generateResponseData),
 			)
-			alert('요청이 성공적으로 처리되었습니다.')
+			console.log('generatedContentData:', generateResponseData)
 		} catch (error) {
 			console.error('Error during generate request:', error)
-			alert('요청 처리 중 오류가 발생했습니다.')
 		}
 
 		router.push(`/generate_page?category=${selectedCategory}`)

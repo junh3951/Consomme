@@ -60,7 +60,7 @@ generatepg-main {
 .generatepg-content-grid {
 	width: 101%;
 	grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-	gap: 40px;
+	gap: 10px;
 	display: flex; /* 그리드 대신 플렉스로 변경하여 요소들이 한 줄로 배열되게 함 */
 	flex-wrap: nowrap; /* 요소들이 줄 바꿈 없이 한 줄로 유지 */
 	overflow-x: auto; /* 수평 스크롤바 활성화 */
@@ -71,14 +71,14 @@ generatepg-main {
 }
 
 .generatepg-content-box {
-	flex: 0 0 370px;
+	flex: 0 0 calc(390px - 7%);
 	background-color: #f8f8f8;
 	border: 2px solid #e6e6e6;
 	border-radius: 10px;
-	padding: 20px;
+	padding: 10px;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: flex-start;
 	cursor: pointer;
 	margin-top: 40px;
 	transition: all 0.3s ease;
@@ -88,8 +88,8 @@ generatepg-main {
 	color: #191919;
 	font-size: 100%;
 	position: relative;
-	top: -60px;
-	left: -20px;
+	top: -40px;
+	left: -5px;
 }
 
 .generatepg-content-box:hover {
