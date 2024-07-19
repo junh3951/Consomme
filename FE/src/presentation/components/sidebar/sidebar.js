@@ -44,13 +44,13 @@ const Sidebar = ({ children, activePage }) => {
 			<SidebarButton
 				logotype="video"
 				text="콘텐츠 소재"
-				notactive={activePage !== 'recommned_page'}
+				// notactive={activePage !== 'recommned_page'}
 				onClick={() => router.push('/recommned_page')}
 			/>
 			<SidebarButton
 				logotype="box"
 				text="소재 보관함"
-				notactive={activePage !== 'archive_page'}
+				// notactive={activePage !== 'archive_page'}
 				onClick={() => router.push('/archive_page')}
 			/>
 			<div className="sidebar-footer">
