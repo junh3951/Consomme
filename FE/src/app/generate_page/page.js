@@ -16,6 +16,7 @@ function App() {
 	const [inputValue, setInputValue] = useState('')
 	const [detailValue, setDetailValue] = useState('')
 	const [isRegenerating, setIsRegenerating] = useState(false);
+	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
 		const prevPage = localStorage.getItem('previousPage')
@@ -71,6 +72,7 @@ function App() {
 			setContents(newContents)
 			console.log('Updated contents:', newContents)
 		}
+		setLoading(false) // 추가된 부분
 	}, [])
 
 	useEffect(() => {
@@ -167,7 +169,7 @@ function App() {
 		console.log('Sending enhancement request:', requestData)
 
 		try {
-			const response = await fetch('http://34.16.144.210:3000/enhance', {
+			const response = await fetch('https://consomme.site/enhance', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -214,6 +216,10 @@ function App() {
 		} finally {
 			setIsRegenerating(false)
 		}
+	}
+
+	if (loading) {
+		return <Loading />
 	}
 
 	return (
