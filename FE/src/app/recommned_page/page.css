@@ -137,6 +137,8 @@
 	align-items: center; /* Align items from the start horizontally */
 	justify-content: flex-start; /* Align items from the start vertically */
 	padding: 20px; /* Add some padding for better spacing */
+	overflow: scroll;
+	overflow-x: hidden;
 }
 
 .recommandpg-right-content-container {
