@@ -2,8 +2,12 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100vh; /* 화면 전체 중앙에 배치 */
+	height: 100%; /* 화면 전체 중앙에 배치 */
 	background-color: white; /* 배경색을 흰색으로 설정 */
+	width: calc(100% - 255px); /* 사이드바를 제외한 나머지 화면에 배치 */
+	min-width: 500px;
+	position: fixed;
+	right: 0;
 }
 
 .loading-gif {

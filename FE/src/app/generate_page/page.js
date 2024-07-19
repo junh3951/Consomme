@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation'
 import Sidebar from '@/presentation/components/sidebar/sidebar'
 import InputWithLabel from '@/presentation/components/input_with_label/input_with_label'
 import RectButton from '@/presentation/components/rect_button/rect_button'
-import Loading from '@/presentation/components/loading/loading'
 
 function App() {
 	const router = useRouter()
@@ -15,7 +14,6 @@ function App() {
 	const [selectedContent, setSelectedContent] = useState(null)
 	const [inputValue, setInputValue] = useState('')
 	const [detailValue, setDetailValue] = useState('')
-	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
 		const prevPage = localStorage.getItem('previousPage')
@@ -71,7 +69,6 @@ function App() {
 			setContents(newContents)
 			console.log('Updated contents:', newContents)
 		}
-		setLoading(false) // 추가된 부분
 	}, [])
 
 	useEffect(() => {
@@ -211,10 +208,6 @@ function App() {
 		} catch (error) {
 			console.error('Error during enhance request:', error)
 		}
-	}
-
-	if (loading) {
-		return <Loading />
 	}
 
 	return (
