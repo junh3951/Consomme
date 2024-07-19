@@ -76,13 +76,16 @@ function App() {
 		console.log('Sending search request:', data)
 
 		try {
-			const searchResponse = await fetch('https://consomme.site/search', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
+			const searchResponse = await fetch(
+				'http://34.16.144.210:3000/search',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(data),
 				},
-				body: JSON.stringify(data),
-			})
+			)
 
 			console.log('Search response status:', searchResponse.status)
 			if (!searchResponse.ok) {
@@ -149,7 +152,7 @@ function App() {
 
 		try {
 			const generateResponse = await fetch(
-				'https://consomme.site/generate',
+				'http://34.16.144.210:3000/generate',
 				{
 					method: 'POST',
 					headers: {
