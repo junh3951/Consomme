@@ -1,6 +1,6 @@
-import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import os
 import pandas as pd
 from googleapiclient.discovery import build
 from datetime import datetime, timedelta
@@ -8,7 +8,6 @@ import re
 import openai
 from collections import Counter
 from dotenv import load_dotenv
-import re
 
 
 #######
@@ -23,7 +22,10 @@ openai.api_key = OPENAI_API_KEY
 youtube = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
 
 app = Flask(__name__)
-CORS(app)
+cors = CORS(app, resources={r"/*": {"origins": "https://consomme.vercel.app"}})
+
+# CORS 설정
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 #######
