@@ -87,9 +87,9 @@
 .sidebar-review-box {
 	position: relative;
 	display: flex;
-	background-color: #d9d9d9;
+	background-color: #F9F9F9;
 	height: 80px;
-	width: 170px;
+	width: 180px;
 	align-items: center;
 	padding: 0px;
 	border-radius: 15px;
