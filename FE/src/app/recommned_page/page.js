@@ -75,16 +75,13 @@ function App() {
 		console.log('Sending search request:', data)
 
 		try {
-			const searchResponse = await fetch(
-				'https://34.125.114.34:3000/search',
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify(data),
+			const searchResponse = await fetch('https://consomme.site/search', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
 				},
-			)
+				body: JSON.stringify(data),
+			})
 
 			console.log('Search response status:', searchResponse.status)
 			if (!searchResponse.ok) {
@@ -151,7 +148,7 @@ function App() {
 
 		try {
 			const generateResponse = await fetch(
-				'https://34.125.114.34:3000/generate',
+				'https://consomme.site/generate',
 				{
 					method: 'POST',
 					headers: {
