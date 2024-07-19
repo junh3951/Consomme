@@ -166,7 +166,7 @@ function App() {
 		console.log('Sending enhancement request:', requestData)
 
 		try {
-			const response = await fetch('https://34.16.144.210:3000/enhance', {
+			const response = await fetch('https://34.125.114.34:3000/enhance', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
