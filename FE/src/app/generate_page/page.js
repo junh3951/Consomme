@@ -8,8 +8,6 @@ import InputWithLabel from '@/presentation/components/input_with_label/input_wit
 import RectButton from '@/presentation/components/rect_button/rect_button'
 import Loading from '@/presentation/components/loading/loading'
 
-// 
-
 function App() {
 	const router = useRouter()
 	const [previousPage, setPreviousPage] = useState('')
