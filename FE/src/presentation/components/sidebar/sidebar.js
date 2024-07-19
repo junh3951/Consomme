@@ -54,7 +54,9 @@ const Sidebar = ({ children, activePage }) => {
 				onClick={() => router.push('/archive_page')}
 			/>
 			<div className="sidebar-footer">
-				<div className="sidebar-review-box">
+				<div className="sidebar-review-box" onClick={() => window.location.href = 'https://forms.gle/PUbpLDRAmuEDhfLEA'} // 링크를 지정합니다.
+					style={{ cursor: 'pointer' }}
+				>
 					<div className="sidebar-text-wrapper">
 						사용후기를 남기면
 						<br />
