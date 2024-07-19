@@ -5,12 +5,7 @@ const cors = require('cors')
 const app = express()
 const port = 3000
 
-const corsOptions = {
-	origin: 'https://consomme.vercel.app', // 요청을 허용할 도메인
-	optionsSuccessStatus: 200, // 일부 브라우저에서의 성공 상태 코드를 위해 필요
-}
-
-app.use(cors(corsOptions))
+app.use(cors())
 app.use(express.json())
 
 app.get('/main', (req, res) => {

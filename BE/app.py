@@ -22,10 +22,8 @@ openai.api_key = OPENAI_API_KEY
 youtube = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "https://consomme.vercel.app"}})
 
-# CORS 설정
-app.config['CORS_HEADERS'] = 'Content-Type'
+CORS(app)
 
 
 #######
