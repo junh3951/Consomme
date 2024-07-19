@@ -219,8 +219,8 @@ function App() {
 	return (
 		<main className="recommandpg-flex recommandpg-min-h-screen recommandpg-flex-col recommandpg-items-center recommandpg-justify-center recommandpg-bg-white">
 			<Sidebar activePage="recommned_page" />
-			{isRegenerating && <Loading />}
 			<div className="generatepg-right-content-box">
+				{isRegenerating && <Loading />}
 				<div className="generatepg-right-content-container">
 					<div className="h-[55px]" />
 					<button
