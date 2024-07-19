@@ -8,6 +8,7 @@ import RoundButton from '@/presentation/components/round_button/round_button'
 import InputWithLabel from '@/presentation/components/input_with_label/input_with_label'
 import Sidebar from '@/presentation/components/sidebar/sidebar'
 import BubbleButtons from '@/presentation/components/bubble_buttons/bubble_buttons'
+import Loading from '@/presentation/components/loading/loading'
 
 const getCircleSize = (index) => {
 	const baseSize = 50 // 기본 크기
@@ -75,16 +76,13 @@ function App() {
 		console.log('Sending search request:', data)
 
 		try {
-			const searchResponse = await fetch(
-				'http://34.16.144.210:3000/search',
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify(data),
+			const searchResponse = await fetch('https://consomme.site/search', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
 				},
-			)
+				body: JSON.stringify(data),
+			})
 
 			console.log('Search response status:', searchResponse.status)
 			if (!searchResponse.ok) {
@@ -151,7 +149,7 @@ function App() {
 
 		try {
 			const generateResponse = await fetch(
-				'http://34.16.144.210:3000/generate',
+				'https://consomme.site/generate',
 				{
 					method: 'POST',
 					headers: {
@@ -185,7 +183,8 @@ function App() {
 		<main className="recommandpg-flex recommandpg-min-h-screen recommandpg-flex-col recommandpg-items-center recommandpg-justify-center recommandpg-bg-white">
 			<Sidebar />
 			<div className="recommandpg-right-content-box">
-				{isGenerating && <div className="loading-overlay" />}
+				{isGenerating && <Loading />}
+				{/* {isGenerating && <div className="loading-overlay" />} */}
 				<div className="recommandpg-right-content-container">
 					<div className="h-[55px]" />
 					<div className="recommandpg-header-text-container">

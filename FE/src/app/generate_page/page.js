@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import Sidebar from '@/presentation/components/sidebar/sidebar'
 import InputWithLabel from '@/presentation/components/input_with_label/input_with_label'
 import RectButton from '@/presentation/components/rect_button/rect_button'
+import Loading from '@/presentation/components/loading/loading'
 
 function App() {
 	const router = useRouter()
@@ -14,6 +15,7 @@ function App() {
 	const [selectedContent, setSelectedContent] = useState(null)
 	const [inputValue, setInputValue] = useState('')
 	const [detailValue, setDetailValue] = useState('')
+	const [isRegenerating, setIsRegenerating] = useState(false);
 
 	useEffect(() => {
 		const prevPage = localStorage.getItem('previousPage')
@@ -154,6 +156,8 @@ function App() {
 	const handleRegenerateClick = async () => {
 		if (selectedContent === null || !detailValue) return
 
+		setIsRegenerating(true)
+
 		const selectedTrending = contents[selectedContent]
 		const requestData = {
 			selected_trending: `### ${selectedTrending.title}\n**소재 추천 이유:**\n${selectedTrending.reason}`,
@@ -163,7 +167,7 @@ function App() {
 		console.log('Sending enhancement request:', requestData)
 
 		try {
-			const response = await fetch('http://34.16.144.210:3000/enhance', {
+			const response = await fetch('https://consomme.site/enhance', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -207,12 +211,15 @@ function App() {
 			)
 		} catch (error) {
 			console.error('Error during enhance request:', error)
+		} finally {
+			setIsRegenerating(false)
 		}
 	}
 
 	return (
 		<main className="recommandpg-flex recommandpg-min-h-screen recommandpg-flex-col recommandpg-items-center recommandpg-justify-center recommandpg-bg-white">
 			<Sidebar activePage="recommned_page" />
+			{isRegenerating && <Loading />}
 			<div className="generatepg-right-content-box">
 				<div className="generatepg-right-content-container">
 					<div className="h-[55px]" />
