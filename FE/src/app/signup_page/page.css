@@ -1,0 +1,131 @@
+@import url('@/presentation/assets/style/Global.css');
+
+.signup-body,
+.signup-html,
+.signup-main {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background-color: white;
+}
+
+.signup-flex {
+	display: flex;
+}
+
+.signup-min-h-screen {
+	min-height: 100vh;
+}
+
+.signup-flex-col {
+	flex-direction: column;
+}
+
+.signup-items-center {
+	align-items: center;
+}
+
+.signup-justify-center {
+	justify-content: center;
+}
+
+.signup-bg-white {
+	background-color: white;
+}
+
+.signup-left-sidebar {
+	position: absolute;
+	left: 0;
+	width: 40%;
+	min-width: 400px;
+	height: 100%;
+	background: #f2f2ff;
+	background: color(display-p3 0.9490196 0.9490196 1);
+	overflow: hidden;
+}
+
+.signup-sidebar-pattern {
+	position: absolute;
+	right: -230px;
+	top: -100px;
+	width: 150%;
+	height: 150%;
+	min-width: 747.571px;
+	min-height: 292.403px;
+	transform: rotate(-2.552deg);
+	flex-shrink: 0;
+	stroke: #fff;
+	stroke-width: 50px;
+	stroke: color(display-p3 1 1 1);
+}
+
+.signup-logo-ribbon-container {
+	width: 100%;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+}
+
+.signup-greeting-text {
+	width: 80%;
+	font-family: 'PretendardVariable', sans-serif;
+	font-size: clamp(16px, 2vw, 350%);
+	color: #2f2f2f;
+	position: absolute;
+	top: 8%;
+	left: 8%;
+}
+
+.signup-right-content-box {
+	position: absolute;
+	right: 0;
+	width: 60%;
+	min-width: 500px;
+	height: 100%;
+	background: #fff;
+}
+
+.signup-right-content-container {
+	position: absolute;
+	width: 80%;
+	height: 100%;
+	left: 10%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+.signup-logo-container {
+	width: 52px;
+	height: 52px;
+	flex-shrink: 0;
+	align-items: flex-end;
+	justify-content: flex-start;
+}
+
+.signup-text-container {
+	font-family: 'PretendardVariable', sans-serif;
+	font-size: 150%;
+	margin-top: 16px;
+	color: #191919;
+}
+
+.signup-input-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 50%;
+	height: 60px;
+	min-width: 300px;
+	margin: 10px 0;
+}
+
+.signup-button-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 50%;
+	min-width: 300px;
+}

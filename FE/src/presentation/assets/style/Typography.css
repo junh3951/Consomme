@@ -1,0 +1,83 @@
+@font-face {
+	font-family: PretendardVariable;
+	src: url('../font/PretendardVariable.woff2');
+}
+
+:root {
+	font-family: 'PretendardVariable', sans-serif;
+	font-weight: 550;
+}
+
+.b28 {
+	font-family: 'PretendardVariable', sans-serif;
+	font-size: 28px;
+	line-height: 24px;
+	font-weight: 700;
+}
+
+.b24 {
+	font-family: 'PretendardVariable', sans-serif;
+	font-size: 24px;
+	line-height: 24px;
+	font-weight: 700;
+}
+
+.sb16 {
+	font-family: 'PretendardVariable', sans-serif;
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 600;
+}
+
+.m16 {
+	font-family: 'PretendardVariable', sans-serif;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.r16 {
+	font-family: 'PretendardVariable', sans-serif;
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 400;
+}
+
+.b14 {
+	font-family: 'PretendardVariable', sans-serif;
+	font-size: 14px;
+	line-height: 24px;
+	font-weight: 700;
+}
+
+.m14 {
+	font-family: 'PretendardVariable', sans-serif;
+	font-size: 14px;
+	line-height: 24px;
+}
+
+.r14 {
+	font-family: 'PretendardVariable', sans-serif;
+	font-size: 14px;
+	line-height: 24px;
+	font-weight: 400;
+}
+
+.b12 {
+	font-family: 'PretendardVariable', sans-serif;
+	font-size: 12px;
+	line-height: 24px;
+	font-weight: 700;
+}
+
+.m12 {
+	font-family: 'PretendardVariable', sans-serif;
+	font-size: 12px;
+	line-height: 24px;
+}
+
+.r12 {
+	font-family: 'PretendardVariable', sans-serif;
+	font-size: 12px;
+	line-height: 24px;
+	font-weight: 400;
+}

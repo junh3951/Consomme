@@ -1,0 +1,151 @@
+@import url('@/presentation/assets/style/Global.css');
+
+.main-body,
+.main-html,
+.main-main {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background-color: white;
+}
+
+.main-flex {
+	display: flex;
+}
+
+.main-min-h-screen {
+	min-height: 100vh;
+}
+
+.main-flex-col {
+	flex-direction: column;
+}
+
+.main-items-center {
+	align-items: center;
+}
+
+.main-justify-center {
+	justify-content: center;
+}
+
+.main-bg-white {
+	background-color: white;
+}
+
+.main-left-sidebar {
+	position: absolute;
+	left: 0;
+	width: 40%;
+	min-width: 400px;
+	height: 100%;
+	background: #f2f2ff;
+	background: color(display-p3 0.9490196 0.9490196 1);
+	overflow: hidden;
+}
+
+.main-sidebar-pattern {
+	position: absolute;
+	right: -230px;
+	top: -100px;
+	width: 150%;
+	height: 150%;
+	min-width: 747.571px;
+	min-height: 292.403px;
+	transform: rotate(-2.552deg);
+	flex-shrink: 0;
+	stroke: #fff;
+	stroke-width: 50px;
+	stroke: color(display-p3 1 1 1);
+}
+
+.main-logo-ribbon-container {
+	width: 100%;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+}
+
+.main-greeting-text {
+	width: 80%;
+	font-family: 'PretendardVariable', sans-serif;
+	font-size: clamp(16px, 2vw, 350%);
+	color: #2f2f2f;
+	position: absolute;
+	top: 8%;
+	left: 8%;
+}
+
+.main-right-content-box {
+	position: absolute;
+	right: 0;
+	width: 60%;
+	min-width: 500px;
+	height: 100%;
+	background: #fff;
+}
+
+.main-right-content-container {
+	position: absolute;
+	width: 80%;
+	height: 100%;
+	left: 10%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+.main-logo-container {
+	width: 52px;
+	height: 52px;
+	flex-shrink: 0;
+	align-items: flex-end;
+	justify-content: flex-start;
+}
+
+.main-text-container {
+	font-family: 'PretendardVariable', sans-serif;
+	font-size: 150%;
+	margin-top: 16px;
+	color: #191919;
+}
+
+.main-input-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 50%;
+	height: 60px;
+	min-width: 300px;
+	margin: 10px 0;
+}
+
+.main-button-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 50%;
+	min-width: 300px;
+}
+
+.main-forgot-password-text {
+	color: #656565;
+	color: color(display-p3 0.3961 0.3961 0.3961);
+	text-align: center;
+	width: 50%;
+	margin-top: 10px;
+	height: 5px;
+	min-width: 300px;
+	font-size: 12px;
+	font-weight: 500;
+	color: rgb(73, 73, 198);
+}
+
+.main-or-text {
+	color: #656565;
+	color: color(display-p3 0.3961 0.3961 0.3961);
+	font-size: 16px;
+	font-weight: 300;
+}
