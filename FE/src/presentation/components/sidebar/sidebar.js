@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import Icon from '@/presentation/assets/image/icon'
 import SidebarButton from '@/presentation/components/sidebar_button/sidebar_button'
 import './sidebar.css'
-import reviewimage from '@/presentation/assets/image/review.png'
+import reviewimage from '@/presentation/assets/image/review-coffee.svg'
 import Image from 'next/image'
 
 const Sidebar = ({ children, activePage }) => {
@@ -56,11 +56,11 @@ const Sidebar = ({ children, activePage }) => {
 			<div className="sidebar-footer">
 				<div className="sidebar-review-box">
 					<div className="sidebar-text-wrapper">
-						도움이 되셨다면
+						사용후기를 남기면
 						<br />
-						간단한 사용후기를
+						추첨을 통해
 						<br />
-						남겨주시겠어요?
+						아.아를 드립니다!
 					</div>
 					<div className="sidebar-custom-width" />
 					<div className="sidebar-review-icon">
@@ -70,7 +70,7 @@ const Sidebar = ({ children, activePage }) => {
 				<div className="h-[10px]" />
 				<div className="sidebar-id">
 					{userName} 님{' '}
-					<span className="sidebar-badge">Free Trial</span>
+					<span className="sidebar-badge">무료 버전</span>
 				</div>
 				<div className="h-[10px]" />
 				<SidebarButton

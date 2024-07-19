@@ -5,7 +5,7 @@ import loadingimage from '@/presentation/assets/image/loading-popcorn.gif'
 
 function Loading() {
 	return (
-		<div className="loading-spinner-container">
+		<div className="loading-container">
 			<Image src={loadingimage} alt="Loading..." className="loading-gif" />
 		</div>
 	)
